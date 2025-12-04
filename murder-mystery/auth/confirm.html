@@ -163,16 +163,27 @@
 
         async function handleEmailConfirmation() {
             try {
-                // Get the hash fragment from URL (Supabase uses hash for PKCE)
+                // Check query params for code (PKCE flow)
+                const queryParams = new URLSearchParams(window.location.search);
+                const code = queryParams.get('code');
+
+                if (code) {
+                    // Exchange the code for a session (PKCE flow)
+                    const { data, error } = await supabase.auth.exchangeCodeForSession(code);
+
+                    if (error) throw error;
+
+                    if (data.session) {
+                        showState('success-state');
+                        return;
+                    }
+                }
+
+                // Get the hash fragment from URL (alternative flow)
                 const hashParams = new URLSearchParams(window.location.hash.substring(1));
                 const accessToken = hashParams.get('access_token');
                 const refreshToken = hashParams.get('refresh_token');
                 const type = hashParams.get('type');
-
-                // Also check query params for some Supabase configurations
-                const queryParams = new URLSearchParams(window.location.search);
-                const tokenHash = queryParams.get('token_hash');
-                const queryType = queryParams.get('type');
 
                 if (accessToken && refreshToken) {
                     // Set the session using the tokens from the URL
@@ -184,7 +195,14 @@
                     if (error) throw error;
 
                     showState('success-state');
-                } else if (tokenHash && queryType === 'email') {
+                    return;
+                }
+
+                // Check query params for token_hash (alternative Supabase flow)
+                const tokenHash = queryParams.get('token_hash');
+                const queryType = queryParams.get('type');
+
+                if (tokenHash && queryType === 'email') {
                     // Handle email confirmation via token_hash
                     const { error } = await supabase.auth.verifyOtp({
                         token_hash: tokenHash,
@@ -194,16 +212,17 @@
                     if (error) throw error;
 
                     showState('success-state');
-                } else {
-                    // Check if user is already logged in (confirmation already processed)
-                    const { data: { session } } = await supabase.auth.getSession();
+                    return;
+                }
 
-                    if (session) {
-                        showState('success-state');
-                    } else {
-                        // No tokens found, might be direct access or expired link
-                        throw new Error('確認リンクが無効か、既に使用されています。');
-                    }
+                // Check if user is already logged in (confirmation already processed)
+                const { data: { session } } = await supabase.auth.getSession();
+
+                if (session) {
+                    showState('success-state');
+                } else {
+                    // No tokens found, might be direct access or expired link
+                    throw new Error('確認リンクが無効か、既に使用されています。');
                 }
             } catch (error) {
                 console.error('Email confirmation error:', error);
