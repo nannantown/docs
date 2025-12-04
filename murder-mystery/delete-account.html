@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アカウント削除リクエスト - MurderRPG</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #333;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 48px 32px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: #1a1a2e;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .app-name {
+            color: #e94560;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 32px;
+        }
+
+        .warning-box h3 {
+            color: #856404;
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .warning-box p {
+            color: #856404;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        h2 {
+            color: #1a1a2e;
+            font-size: 20px;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e94560;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 16px;
+            color: #444;
+        }
+
+        .steps {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+
+        .step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: #e94560;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            color: #1a1a2e;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .step-content p {
+            margin-bottom: 0;
+            font-size: 14px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 24px;
+        }
+
+        .data-table th,
+        .data-table td {
+            border: 1px solid #dee2e6;
+            padding: 12px 16px;
+            text-align: left;
+        }
+
+        .data-table th {
+            background: #1a1a2e;
+            color: white;
+            font-weight: 600;
+        }
+
+        .data-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-delete {
+            background: #dc3545;
+            color: white;
+        }
+
+        .badge-retain {
+            background: #6c757d;
+            color: white;
+        }
+
+        .request-form {
+            background: #e8f4fd;
+            border: 1px solid #b8daff;
+            border-radius: 8px;
+            padding: 24px;
+            margin-top: 32px;
+        }
+
+        .request-form h3 {
+            color: #004085;
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #333;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            display: block;
+            width: 100%;
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .submit-button:hover {
+            background: #c82333;
+        }
+
+        .contact {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 32px;
+        }
+
+        .contact h3 {
+            color: #1a1a2e;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        a {
+            color: #e94560;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .success-message {
+            display: none;
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            color: #155724;
+        }
+
+        .success-message h3 {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <p class="app-name">MurderRPG - 対面型マーダーミステリー</p>
+            <h1>アカウント削除リクエスト</h1>
+            <p class="subtitle">アカウントと関連データの削除をリクエストできます</p>
+        </div>
+
+        <div class="warning-box">
+            <h3>⚠️ ご注意ください</h3>
+            <p>アカウントを削除すると、すべてのゲームデータが永久に削除され、復元することはできません。削除をリクエストする前に、よくご検討ください。</p>
+        </div>
+
+        <h2>削除手順</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>削除リクエストを送信</h4>
+                    <p>このページ下部のフォームから、登録済みのメールアドレスを入力して削除リクエストを送信してください。</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>本人確認</h4>
+                    <p>ご登録のメールアドレスに確認メールをお送りします。メール内のリンクをクリックして本人確認を完了してください。</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>削除処理</h4>
+                    <p>本人確認完了後、7日以内にアカウントと関連データが完全に削除されます。</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>削除・保持されるデータ</h2>
+        <p>アカウント削除リクエストが処理されると、以下のデータが削除または保持されます：</p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>データの種類</th>
+                    <th>処理</th>
+                    <th>保持期間</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>アカウント情報（メールアドレス、表示名）</td>
+                    <td><span class="badge badge-delete">削除</span></td>
+                    <td>即時削除</td>
+                </tr>
+                <tr>
+                    <td>ゲーム進行状況・プレイ履歴</td>
+                    <td><span class="badge badge-delete">削除</span></td>
+                    <td>7日以内に削除</td>
+                </tr>
+                <tr>
+                    <td>投票履歴・取得カード情報</td>
+                    <td><span class="badge badge-delete">削除</span></td>
+                    <td>7日以内に削除</td>
+                </tr>
+                <tr>
+                    <td>ルーム参加履歴</td>
+                    <td><span class="badge badge-delete">削除</span></td>
+                    <td>7日以内に削除</td>
+                </tr>
+                <tr>
+                    <td>取引・決済情報（該当する場合）</td>
+                    <td><span class="badge badge-retain">保持</span></td>
+                    <td>法令に基づき7年間保持</td>
+                </tr>
+                <tr>
+                    <td>不正利用防止のためのログ</td>
+                    <td><span class="badge badge-retain">保持</span></td>
+                    <td>削除から90日間保持後に削除</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="request-form" id="request-form">
+            <h3>削除リクエストフォーム</h3>
+            <form id="delete-form">
+                <div class="form-group">
+                    <label for="email">登録済みメールアドレス *</label>
+                    <input type="email" id="email" name="email" required placeholder="example@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="reason">削除理由（任意）</label>
+                    <textarea id="reason" name="reason" placeholder="削除を希望される理由をお聞かせください（サービス改善の参考にさせていただきます）"></textarea>
+                </div>
+                <button type="submit" class="submit-button">アカウント削除をリクエスト</button>
+            </form>
+        </div>
+
+        <div class="success-message" id="success-message">
+            <h3>✅ リクエストを受け付けました</h3>
+            <p>ご登録のメールアドレスに確認メールをお送りしました。<br>メール内のリンクをクリックして削除手続きを完了してください。</p>
+        </div>
+
+        <div class="contact">
+            <h3>お問い合わせ</h3>
+            <p>削除リクエストに関するご質問は、以下までご連絡ください：</p>
+            <p>メール: <a href="mailto:info@mindbrew.jp">info@mindbrew.jp</a></p>
+            <p>運営: MindBrew</p>
+        </div>
+
+        <div class="footer">
+            <p><a href="privacy.html">プライバシーポリシー</a></p>
+            <p>&copy; 2024 MurderRPG. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('delete-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const reason = document.getElementById('reason').value;
+
+            // In production, this would send to your backend
+            // For now, open email client with pre-filled content
+            const subject = encodeURIComponent('【MurderRPG】アカウント削除リクエスト');
+            const body = encodeURIComponent(
+                'アカウント削除をリクエストします。\n\n' +
+                '登録メールアドレス: ' + email + '\n\n' +
+                '削除理由: ' + (reason || '未記入') + '\n\n' +
+                '※このメールを送信することで、アカウント削除手続きが開始されます。'
+            );
+
+            window.location.href = 'mailto:info@mindbrew.jp?subject=' + subject + '&body=' + body;
+
+            // Show success message
+            document.getElementById('request-form').style.display = 'none';
+            document.getElementById('success-message').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
