@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roost - アカウント削除リクエスト</title>
+    <style>
+        :root {
+            --primary: #5D4037;
+            --danger: #dc2626;
+            --danger-bg: #fef2f2;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --bg: #ffffff;
+            --section-bg: #EFEBE9;
+            --border: #e5e7eb;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--bg);
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        .subtitle {
+            color: var(--muted);
+            margin-bottom: 2rem;
+        }
+        h2 {
+            font-size: 1.3rem;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+        p, ul, ol {
+            margin-bottom: 1rem;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .section {
+            background: var(--section-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        .warning {
+            background: var(--danger-bg);
+            border-left: 4px solid var(--danger);
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+        .warning-title {
+            color: var(--danger);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .steps {
+            background: var(--section-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        .steps ol {
+            margin-bottom: 0;
+        }
+        .steps li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .steps li:last-child {
+            border-bottom: none;
+        }
+        .highlight {
+            background: #fef3c7;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            background: var(--section-bg);
+            font-weight: 600;
+        }
+        .delete-icon {
+            color: var(--danger);
+        }
+        .retain-icon {
+            color: #f59e0b;
+        }
+        a {
+            color: var(--primary);
+        }
+        .cta-button {
+            display: inline-block;
+            background: var(--danger);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        .cta-button:hover {
+            background: #b91c1c;
+        }
+        footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+        @media (max-width: 600px) {
+            body { padding: 1rem; }
+            h1 { font-size: 1.5rem; }
+            table { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Roost アカウント削除リクエスト</h1>
+        <p class="subtitle">アカウントと関連データの削除方法</p>
+
+        <div class="warning">
+            <p class="warning-title">ご注意</p>
+            <p>アカウントを削除すると、Roostに保存されたすべてのデータが完全に削除されます。この操作は取り消すことができません。</p>
+        </div>
+
+        <h2>アカウント削除の手順</h2>
+
+        <div class="steps">
+            <ol>
+                <li><strong>Roostアプリを開く</strong><br>お使いのデバイスでRoostアプリを起動してください</li>
+                <li><strong>設定画面に移動</strong><br>画面右下の「設定」タブをタップしてください</li>
+                <li><strong>アカウント設定を開く</strong><br>「アカウント」セクションをタップしてください</li>
+                <li><strong>アカウント削除を選択</strong><br><span class="highlight">「アカウントを削除」</span>ボタンをタップしてください</li>
+                <li><strong>確認して削除</strong><br>確認ダイアログで「削除する」をタップすると、アカウントが削除されます</li>
+            </ol>
+        </div>
+
+        <h2>削除されるデータ</h2>
+        <p>アカウント削除時に、以下のデータが<strong>完全に削除</strong>されます：</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>データの種類</th>
+                    <th>状態</th>
+                    <th>保持期間</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>アカウント情報（メールアドレス、ユーザー名）</td>
+                    <td><span class="delete-icon">削除</span></td>
+                    <td>即時削除</td>
+                </tr>
+                <tr>
+                    <td>コーヒーレシピ</td>
+                    <td><span class="delete-icon">削除</span></td>
+                    <td>即時削除</td>
+                </tr>
+                <tr>
+                    <td>エスプレッソショット記録</td>
+                    <td><span class="delete-icon">削除</span></td>
+                    <td>即時削除</td>
+                </tr>
+                <tr>
+                    <td>アップロードした写真</td>
+                    <td><span class="delete-icon">削除</span></td>
+                    <td>即時削除</td>
+                </tr>
+                <tr>
+                    <td>グループメンバーシップ</td>
+                    <td><span class="delete-icon">削除</span></td>
+                    <td>即時削除</td>
+                </tr>
+                <tr>
+                    <td>共有したレシピへの参照</td>
+                    <td><span class="delete-icon">削除</span></td>
+                    <td>即時削除</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>保持されるデータ</h2>
+        <p>以下のデータは、法的義務またはサービス運営上の理由により一定期間保持される場合があります：</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>データの種類</th>
+                    <th>保持理由</th>
+                    <th>保持期間</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>匿名化された利用統計</td>
+                    <td>サービス改善</td>
+                    <td>最大12ヶ月</td>
+                </tr>
+                <tr>
+                    <td>不正利用防止ログ</td>
+                    <td>セキュリティ・法的義務</td>
+                    <td>最大90日</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>メールでの削除リクエスト</h2>
+        <p>アプリからアカウントを削除できない場合は、以下のメールアドレスに削除リクエストを送信してください：</p>
+
+        <div class="section">
+            <p><strong>送信先:</strong> <a href="mailto:contact@roost.coffee">contact@roost.coffee</a></p>
+            <p><strong>件名:</strong> アカウント削除リクエスト</p>
+            <p><strong>本文に含める情報:</strong></p>
+            <ul>
+                <li>登録メールアドレス</li>
+                <li>ユーザー名（わかる場合）</li>
+                <li>削除を希望する理由（任意）</li>
+            </ul>
+        </div>
+
+        <p>メールでのリクエストは、本人確認後<strong>7営業日以内</strong>に処理されます。</p>
+
+        <h2>削除後について</h2>
+        <ul>
+            <li>削除されたアカウントは復元できません</li>
+            <li>同じメールアドレスで新規アカウントを作成することは可能です</li>
+            <li>削除前のデータを新しいアカウントに引き継ぐことはできません</li>
+        </ul>
+
+        <h2>お問い合わせ</h2>
+        <p>アカウント削除に関するご質問がある場合は、以下までお問い合わせください：</p>
+        <p><a href="mailto:contact@roost.coffee">contact@roost.coffee</a></p>
+
+        <footer>
+            <p>&copy; 2025 Roost. All rights reserved.</p>
+            <p><a href="privacy-policy.html">プライバシーポリシー</a></p>
+        </footer>
+    </div>
+</body>
+</html>
