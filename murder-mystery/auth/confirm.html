@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>メール確認完了 - MurderRPG</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 48px 32px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+
+        .icon svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+        }
+
+        .loading-icon {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+        }
+
+        .error-icon {
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+        }
+
+        h1 {
+            color: #1a1a2e;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #e94560, #c73e54);
+            color: white;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(233, 69, 96, 0.4);
+        }
+
+        .note {
+            margin-top: 24px;
+            font-size: 14px;
+            color: #999;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Loading State -->
+        <div id="loading-state">
+            <div class="icon loading-icon">
+                <div class="spinner"></div>
+            </div>
+            <h1>確認中...</h1>
+            <p>メールアドレスを確認しています。<br>しばらくお待ちください。</p>
+        </div>
+
+        <!-- Success State -->
+        <div id="success-state" class="hidden">
+            <div class="icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+            </div>
+            <h1>メール確認完了</h1>
+            <p>メールアドレスの確認が完了しました。<br>アプリに戻ってログインしてください。</p>
+            <a href="io.supabase.murderrpg://auth/confirm" class="button">アプリを開く</a>
+            <p class="note">ボタンが動作しない場合は、<br>アプリを直接開いてログインしてください。</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="error-state" class="hidden">
+            <div class="icon error-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                </svg>
+            </div>
+            <h1>エラーが発生しました</h1>
+            <p id="error-message">確認リンクが無効か、期限切れです。<br>もう一度登録をお試しください。</p>
+            <a href="io.supabase.murderrpg://auth/login" class="button">アプリに戻る</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const SUPABASE_URL = 'https://hukpyzempikhxuuwooka.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh1a3B5emVtcGlraHh1dXdvb2thIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM4NTU2NjgsImV4cCI6MjA3OTQzMTY2OH0.gYE37-gjs2YiRW8FkGvNp335HuaH6Bz7rBoI0HKnrck';
+
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        function showState(stateId) {
+            document.getElementById('loading-state').classList.add('hidden');
+            document.getElementById('success-state').classList.add('hidden');
+            document.getElementById('error-state').classList.add('hidden');
+            document.getElementById(stateId).classList.remove('hidden');
+        }
+
+        async function handleEmailConfirmation() {
+            try {
+                // Check query params for code (PKCE flow)
+                const queryParams = new URLSearchParams(window.location.search);
+                const code = queryParams.get('code');
+
+                if (code) {
+                    // Exchange the code for a session (PKCE flow)
+                    const { data, error } = await supabase.auth.exchangeCodeForSession(code);
+
+                    if (error) throw error;
+
+                    if (data.session) {
+                        showState('success-state');
+                        return;
+                    }
+                }
+
+                // Get the hash fragment from URL (alternative flow)
+                const hashParams = new URLSearchParams(window.location.hash.substring(1));
+                const accessToken = hashParams.get('access_token');
+                const refreshToken = hashParams.get('refresh_token');
+                const type = hashParams.get('type');
+
+                if (accessToken && refreshToken) {
+                    // Set the session using the tokens from the URL
+                    const { data, error } = await supabase.auth.setSession({
+                        access_token: accessToken,
+                        refresh_token: refreshToken
+                    });
+
+                    if (error) throw error;
+
+                    showState('success-state');
+                    return;
+                }
+
+                // Check query params for token_hash (alternative Supabase flow)
+                const tokenHash = queryParams.get('token_hash');
+                const queryType = queryParams.get('type');
+
+                if (tokenHash && queryType === 'email') {
+                    // Handle email confirmation via token_hash
+                    const { error } = await supabase.auth.verifyOtp({
+                        token_hash: tokenHash,
+                        type: 'email'
+                    });
+
+                    if (error) throw error;
+
+                    showState('success-state');
+                    return;
+                }
+
+                // Check if user is already logged in (confirmation already processed)
+                const { data: { session } } = await supabase.auth.getSession();
+
+                if (session) {
+                    showState('success-state');
+                } else {
+                    // No tokens found, might be direct access or expired link
+                    throw new Error('確認リンクが無効か、既に使用されています。');
+                }
+            } catch (error) {
+                console.error('Email confirmation error:', error);
+                document.getElementById('error-message').textContent =
+                    error.message || '確認リンクが無効か、期限切れです。もう一度登録をお試しください。';
+                showState('error-state');
+            }
+        }
+
+        // Run on page load
+        handleEmailConfirmation();
+    </script>
+</body>
+</html>
