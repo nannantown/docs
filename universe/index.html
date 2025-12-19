@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universe - 3Dプロジェクト管理</title>
+    <meta name="description" content="宇宙をテーマにした3Dプロジェクト管理アプリケーション。銀河と惑星でプロジェクトを視覚化。">
+    <meta name="author" content="kokinaniwa">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Universe - 3Dプロジェクト管理">
+    <meta property="og:description" content="宇宙をテーマにした3Dプロジェクト管理アプリケーション">
+    <meta property="og:image" content="assets/og-image.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Universe - 3Dプロジェクト管理">
+    <meta name="twitter:image" content="assets/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 0 80px;
+        }
+
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
+        }
+
+        .app-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #fff 0%, #a8edea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 24px;
+            color: #a8edea;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .description {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            text-decoration: none;
+            padding: 18px 40px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.5);
+        }
+
+        .download-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .platform-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .platform-badge svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 60px 0;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 50px;
+            color: #fff;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-icon svg {
+            width: 30px;
+            height: 30px;
+            color: #fff;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Preview Section */
+        .preview {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .preview h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+
+        .preview-image {
+            max-width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Download Section */
+        .download-section {
+            padding: 60px 0;
+        }
+
+        .download-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+        }
+
+        .download-card h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        .system-requirements {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .requirement {
+            text-align: center;
+        }
+
+        .requirement-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .requirement-value {
+            font-size: 16px;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .install-steps {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 30px;
+            text-align: left;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .install-steps h3 {
+            font-size: 16px;
+            margin-bottom: 16px;
+            color: #a8edea;
+        }
+
+        .install-steps ol {
+            padding-left: 20px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .install-steps li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #a8edea;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 40px;
+            }
+
+            .tagline {
+                font-size: 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .system-requirements {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .download-card {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Stars animation */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="app-icon">
+                <img src="assets/icon-512x512.png" alt="Universe App Icon">
+            </div>
+            <h1>Universe</h1>
+            <p class="tagline">3Dプロジェクト管理</p>
+            <p class="description">
+                宇宙をテーマにした革新的なプロジェクト管理アプリ。
+                銀河と惑星でプロジェクトを視覚化し、直感的に整理できます。
+            </p>
+            <a href="https://github.com/nannantown/universe/releases/latest/download/Universe_0.1.0_aarch64.dmg" class="download-btn">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                </svg>
+                ダウンロード
+            </a>
+            <div class="platform-badge">
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                </svg>
+                macOS (Apple Silicon)
+            </div>
+        </header>
+
+        <!-- Features Section -->
+        <section class="features">
+            <h2>特徴</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                        </svg>
+                    </div>
+                    <h3>3D可視化</h3>
+                    <p>プロジェクトを銀河として、タスクを惑星として視覚化。直感的な空間でプロジェクトを管理。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
+                        </svg>
+                    </div>
+                    <h3>ローカル保存</h3>
+                    <p>すべてのデータはお使いのMacにローカル保存。クラウド不要でプライバシーを確保。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                        </svg>
+                    </div>
+                    <h3>キーボード操作</h3>
+                    <p>コマンドパレットとショートカットで効率的に操作。マウスなしでも快適に使用可能。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preview Section -->
+        <section class="preview">
+            <h2>プレビュー</h2>
+            <img src="assets/og-image.png" alt="Universe App Preview" class="preview-image">
+        </section>
+
+        <!-- Download Section -->
+        <section class="download-section">
+            <div class="download-card">
+                <h2>ダウンロード</h2>
+                <div class="system-requirements">
+                    <div class="requirement">
+                        <div class="requirement-label">対応OS</div>
+                        <div class="requirement-value">macOS</div>
+                    </div>
+                    <div class="requirement">
+                        <div class="requirement-label">アーキテクチャ</div>
+                        <div class="requirement-value">Apple Silicon (M1/M2/M3/M4)</div>
+                    </div>
+                    <div class="requirement">
+                        <div class="requirement-label">バージョン</div>
+                        <div class="requirement-value">0.1.0</div>
+                    </div>
+                </div>
+                <a href="https://github.com/nannantown/universe/releases/latest/download/Universe_0.1.0_aarch64.dmg" class="download-btn">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                    </svg>
+                    DMGをダウンロード
+                </a>
+                <div class="install-steps">
+                    <h3>インストール方法</h3>
+                    <ol>
+                        <li>DMGファイルをダウンロード</li>
+                        <li>ダウンロードしたDMGファイルを開く</li>
+                        <li>Universe.appをApplicationsフォルダにドラッグ</li>
+                        <li>Applicationsフォルダから起動</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div>
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="https://github.com/nannantown/universe">GitHub</a>
+            </div>
+            <p class="copyright">&copy; 2024 kokinaniwa. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Generate random stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.width = Math.random() * 2 + 1 + 'px';
+            star.style.height = star.style.width;
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+</html>
