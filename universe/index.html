@@ -658,15 +658,21 @@
             starsContainer.appendChild(star);
         }
 
-        // Fetch latest release and update download links
+        // Fetch latest Universe release from docs repo and update download links
         async function updateDownloadLinks() {
             try {
-                const response = await fetch('https://api.github.com/repos/nannantown/universe/releases/latest');
+                // Get all releases and find the latest universe release
+                const response = await fetch('https://api.github.com/repos/nannantown/docs/releases');
                 if (!response.ok) throw new Error('Failed to fetch');
 
-                const release = await response.json();
-                const version = release.tag_name.replace('v', '');
-                const baseUrl = `https://github.com/nannantown/universe/releases/download/v${version}/Universe_${version}_`;
+                const releases = await response.json();
+                // Find releases that start with "universe-v"
+                const universeRelease = releases.find(r => r.tag_name.startsWith('universe-v'));
+
+                if (!universeRelease) throw new Error('No universe release found');
+
+                const version = universeRelease.tag_name.replace('universe-v', '');
+                const baseUrl = `https://github.com/nannantown/docs/releases/download/universe-v${version}/Universe_${version}_`;
 
                 // Update version display
                 const versionInfo = document.getElementById('version-info');
@@ -683,7 +689,7 @@
                 console.error('Failed to fetch latest release:', error);
                 // Fallback to v0.1.2
                 const version = '0.1.2';
-                const baseUrl = `https://github.com/nannantown/universe/releases/download/v${version}/Universe_${version}_`;
+                const baseUrl = `https://github.com/nannantown/docs/releases/download/universe-v${version}/Universe_${version}_`;
 
                 const versionInfo = document.getElementById('version-info');
                 if (versionInfo) {
