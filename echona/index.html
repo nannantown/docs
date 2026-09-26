@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0e1320">
+<title>Echona の使い方 / How to use Echona</title>
+<meta name="description" content="Echona の最初の設定、保存先の選び方、毎日の使い方。Setup, choosing where to save, and everyday use.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='8' fill='%230a0e18'/%3E%3Crect x='9' y='8' width='3' height='16' rx='1.5' fill='%23d65f46'/%3E%3Crect x='15' y='9' width='8' height='2.4' rx='1.2' fill='%23f2e6d3'/%3E%3Crect x='15' y='14.8' width='6' height='2.4' rx='1.2' fill='%23f2e6d3'/%3E%3Crect x='15' y='20.6' width='8' height='2.4' rx='1.2' fill='%23f2e6d3'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script>
+  // Before first paint: ?lang= > the reader's last choice > the browser's language.
+  (function () {
+    var lang;
+    try { lang = localStorage.getItem('echona-lang'); } catch (e) {}
+    var q = /[?&]lang=(ja|en)/.exec(location.search);
+    if (q) lang = q[1];
+    if (lang !== 'ja' && lang !== 'en') lang = /^ja/i.test(navigator.language || '') ? 'ja' : 'en';
+    document.documentElement.lang = lang;
+  })();
+</script>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0a0e18" stroke="rgba(242,230,211,.14)"/><rect x="9" y="8" width="3" height="16" rx="1.5" fill="#d65f46"/><rect x="15" y="9" width="8" height="2.4" rx="1.2" fill="#f2e6d3"/><rect x="15" y="14.8" width="6" height="2.4" rx="1.2" fill="#f2e6d3"/><rect x="15" y="20.6" width="8" height="2.4" rx="1.2" fill="#f2e6d3"/></svg>
+      Echona
+    </a>
+    <button class="lang-toggle" type="button" hidden onclick="toggleLanguage()">
+      <span id="lang-ja">JA</span><span id="lang-en">EN</span>
+    </button>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+<div class="hero">
+  <p class="eyebrow" data-lang="ja">使い方</p>
+  <p class="eyebrow" data-lang="en">GUIDE</p>
+  <h1 data-lang="ja">ロックしたまま、<br>ささやくだけ。</h1>
+  <h1 data-lang="en">Keep it locked.<br>Just whisper.</h1>
+  <p class="lead" data-lang="ja">Echona は、横のボタンを押して話すだけで、声を文字にして残す iPhone アプリです。最初に3つだけ設定します。</p>
+  <p class="lead" data-lang="en">Echona turns what you say into text: press the side button and talk. Set up three things once, and you're done.</p>
+  <ul class="toc">
+    <li><a href="#setup"><span data-lang="ja">最初の設定</span><span data-lang="en">First setup</span></a></li>
+    <li><a href="#destination"><span data-lang="ja">保存先の選び方</span><span data-lang="en">Where to save</span></a></li>
+    <li><a href="#use"><span data-lang="ja">毎日の使い方</span><span data-lang="en">Everyday use</span></a></li>
+    <li><a href="#support"><span data-lang="ja">サポート</span><span data-lang="en">Support</span></a></li>
+  </ul>
+  <p class="note" data-lang="en">The app's screens are in Japanese. Button names are shown as they appear, with the English meaning in brackets.</p>
+</div>
+
+<!-- 1. First setup -->
+<section class="part" id="setup">
+  <h2><span class="num">01</span><span data-lang="ja">最初の設定</span><span data-lang="en">First setup</span></h2>
+  <p class="part-lead" data-lang="ja">アプリを初めて開くと、3つの画面で案内します。</p>
+  <p class="part-lead" data-lang="en">The first time you open the app, three screens walk you through it.</p>
+
+  <ol class="steps">
+    <li class="step">
+      <span class="node">1</span>
+      <div class="split">
+        <div>
+          <h3 data-lang="ja">保存先を選ぶ</h3>
+          <h3 data-lang="en">Choose where to save</h3>
+          <p data-lang="ja">録音の文字をどこに残すかを選びます。迷ったら「Echona の中だけ」のまま<span class="ui">「次へ」</span>で大丈夫。あとから変えられます。</p>
+          <p data-lang="en">Pick where the text of your recordings goes. Not sure? Leave <span lang="ja">「Echona の中だけ」</span> (Echona only) and tap <span lang="ja">「次へ」</span> (Next). You can change it later.</p>
+          <p class="note" data-lang="ja">3つの違いは <a href="#destination">保存先の選び方</a> へ。</p>
+          <p class="note" data-lang="en">The three choices are explained in <a href="#destination">Where to save</a>.</p>
+        </div>
+        <div class="shots one">
+          <figure>
+            <img class="phone" src="img/guide-dest-app.jpg" width="600" height="1304" alt="「どこに残す？」の画面。Echona の中だけ・iCloud Drive・Obsidian の3つのカード" data-alt-en="The “Where to save?” screen with three cards: Echona only, iCloud Drive, Obsidian" decoding="async">
+          </figure>
+        </div>
+      </div>
+    </li>
+
+    <li class="step">
+      <span class="node">2</span>
+      <div class="split">
+        <div>
+          <h3 data-lang="ja">横のボタンに「録音」を割り当てる</h3>
+          <h3 data-lang="en">Put recording on the Action button</h3>
+          <p data-lang="ja">ここだけは iPhone の設定アプリで行います。</p>
+          <p data-lang="en">This one is done in the iPhone Settings app.</p>
+          <ol class="how" data-lang="ja">
+            <li>設定 › <strong>アクションボタン</strong></li>
+            <li>横にめくって <strong>コントロール</strong> を選ぶ</li>
+            <li>その下のボタンを押し、<strong>Echona 録音</strong> を選ぶ</li>
+            <li>アプリに戻って<span class="ui">「設定しました」</span></li>
+          </ol>
+          <ol class="how" data-lang="en">
+            <li>Settings › <strong>Action Button</strong></li>
+            <li>Swipe to <strong>Controls</strong></li>
+            <li>Tap the button under it and choose <strong>Echona 録音</strong> (Echona Record)</li>
+            <li>Back in the app, tap <span lang="ja">「設定しました」</span> (Done)</li>
+          </ol>
+          <p class="note" data-lang="ja">「Echona 録音」が見つからないときは、「コントロール」の代わりに「ショートカット」を選び、Echona の「録音 開始/停止」を選びます。</p>
+          <p class="note" data-lang="en">Can't find it? Choose Shortcut instead of Controls, then Echona's <span lang="ja">「録音 開始/停止」</span> (Start/stop recording).</p>
+          <p class="note" data-lang="ja">アクションボタンが無い iPhone は<span class="ui">「あとで」</span>で次へ進み、<a href="#record">録音のしかた</a> のほかの方法で。</p>
+          <p class="note" data-lang="en">No Action button? Tap <span lang="ja">「あとで」</span> (Later) to move on, and see <a href="#record">Recording</a> for other ways.</p>
+        </div>
+        <div class="shots one">
+          <figure>
+            <img class="phone" src="img/guide-action.jpg" width="600" height="1304" alt="「横のボタンで、すぐ録音。」の画面。設定 › アクションボタン › コントロール › Echona 録音" data-alt-en="The Action button screen: Settings › Action Button › Controls › Echona 録音" loading="lazy" decoding="async">
+          </figure>
+        </div>
+      </div>
+    </li>
+
+    <li class="step">
+      <span class="node">3</span>
+      <h3 data-lang="ja">声を聞く準備</h3>
+      <h3 data-lang="en">Get ready to listen</h3>
+      <p data-lang="ja"><span class="ui">「準備する」</span>を押し、マイクと音声認識の2つを<span class="ui">「許可」</span>します。日本語の文字起こしに使うデータは、iPhone が初回だけ自動で入れます。3つに ✓ が付いて「準備OK」になれば完了です。</p>
+      <p data-lang="en">Tap <span lang="ja">「準備する」</span> (Get ready) and choose <span lang="ja">「許可」</span> (Allow) for the microphone and for speech recognition. The first time, iPhone also downloads what it needs for Japanese transcription. When all three have a ✓ and the circle says <span lang="ja">「準備OK」</span> (Ready), you're done.</p>
+      <div class="shots four">
+        <figure>
+          <img class="phone" src="img/guide-prep.jpg" width="600" height="1304" alt="「声を聞く準備」の画面と「準備する」ボタン" data-alt-en="The “Get ready” screen with its button" loading="lazy" decoding="async">
+          <figcaption><span data-lang="ja"><span lang="ja">「準備する」</span></span><span data-lang="en">Tap <span lang="ja">「準備する」</span></span></figcaption>
+        </figure>
+        <figure>
+          <img class="phone" src="img/guide-alert-1.jpg" width="600" height="1304" alt="マイクへのアクセスを求める iPhone の確認" data-alt-en="iPhone asking for microphone access" loading="lazy" decoding="async">
+          <figcaption><span data-lang="ja">マイク → 許可</span><span data-lang="en">Microphone → Allow</span></figcaption>
+        </figure>
+        <figure>
+          <img class="phone" src="img/guide-alert-2.jpg" width="600" height="1304" alt="音声認識へのアクセスを求める iPhone の確認" data-alt-en="iPhone asking for speech recognition access" loading="lazy" decoding="async">
+          <figcaption><span data-lang="ja">音声認識 → 許可</span><span data-lang="en">Speech recognition → Allow</span></figcaption>
+        </figure>
+        <figure>
+          <img class="phone" src="img/guide-prep-done.jpg" width="600" height="1304" alt="3つに ✓ が付いた「準備OK」の画面" data-alt-en="“Ready”, with a check on all three" loading="lazy" decoding="async">
+          <figcaption><span data-lang="ja">準備OK → はじめる</span><span data-lang="en">Ready → <span lang="ja">「はじめる」</span> (Start)</span></figcaption>
+        </figure>
+      </div>
+      <p class="note" data-lang="ja">音声認識の確認に「Apple に送信」とありますが、Echona は iPhone の中だけで文字にします（録音を外へ送りません）。「許可しない」を押してしまったら、iPhone の設定 › アプリ › Echona でオンにできます。</p>
+      <p class="note" data-lang="en">The speech recognition prompt is iPhone's standard wording. Echona transcribes on the iPhone itself and never sends your recordings anywhere. If you tapped <span lang="ja">「許可しない」</span> (Don't Allow), turn it on in Settings › Apps › Echona.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- 2. Where to save -->
+<section class="part" id="destination">
+  <h2><span class="num">02</span><span data-lang="ja">保存先の選び方</span><span data-lang="en">Where to save</span></h2>
+  <p class="part-lead" data-lang="ja">録音の文字を、どこに残すか。目安はこれだけです。</p>
+  <p class="part-lead" data-lang="en">Where should the text of your recordings live? A quick rule of thumb:</p>
+
+  <ul class="pick">
+    <li><a href="#dest-app">
+      <span class="when" data-lang="ja">まず試してみる</span><span class="when" data-lang="en">Just trying it out</span>
+      <span class="what" data-lang="ja">Echona の中だけ</span><span class="what" data-lang="en">Echona only</span>
+      <span class="arrow" aria-hidden="true">›</span>
+    </a></li>
+    <li><a href="#dest-icloud">
+      <span class="when" data-lang="ja">Mac やファイル App でも見たい</span><span class="when" data-lang="en">Want to see them on a Mac or in Files</span>
+      <span class="what">iCloud Drive</span>
+      <span class="arrow" aria-hidden="true">›</span>
+    </a></li>
+    <li><a href="#dest-obsidian">
+      <span class="when" data-lang="ja">Obsidian を使っている</span><span class="when" data-lang="en">Already use Obsidian</span>
+      <span class="what">Obsidian</span>
+      <span class="arrow" aria-hidden="true">›</span>
+    </a></li>
+  </ul>
+  <p class="note" data-lang="ja">どれを選んでも、録音と文字起こしは iPhone の中で行い、Echona のアプリは何も外へ送りません。iCloud Drive・Obsidian を選ぶと、文字はあなたの iCloud に同期されます（音声は iPhone の中だけ）。あとから何度でも変えられます。</p>
+  <p class="note" data-lang="en">Whichever you pick, recording and transcription happen on your iPhone, and the Echona app itself sends nothing anywhere. With iCloud Drive or Obsidian, the text syncs to your own iCloud (audio stays on the iPhone). You can change it any time.</p>
+
+  <div class="card" id="dest-app">
+    <div class="split">
+      <div>
+        <span class="tag" data-lang="ja">まず試す</span><span class="tag" data-lang="en">To try it out</span>
+        <h3 data-lang="ja">Echona の中だけ</h3>
+        <h3 data-lang="en">Echona only (Echona の中だけ)</h3>
+        <p data-lang="ja">選んで<span class="ui">「次へ」</span>を押すだけ。録音と文字は、この iPhone の Echona の中にだけ残ります。</p>
+        <p data-lang="en">Pick it and tap <span lang="ja">「次へ」</span> (Next). Recordings and text stay inside Echona on this iPhone.</p>
+        <p class="note" data-lang="ja">1件ずつなら、録音の画面の <a href="#share">共有</a> でメモや LINE へ送れます。</p>
+        <p class="note" data-lang="en">To send one somewhere, use <a href="#share">Share</a> on the recording's screen.</p>
+      </div>
+      <div class="shots one">
+        <figure>
+          <img class="phone" src="img/guide-dest-app.jpg" width="600" height="1304" alt="「Echona の中だけ」に ✓ が付いた画面" data-alt-en="“Echona only” checked" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="dest-icloud">
+    <div class="split">
+      <div>
+        <span class="tag" data-lang="ja">Mac でも見たい</span><span class="tag" data-lang="en">To see them on a Mac</span>
+        <h3>iCloud Drive</h3>
+        <p data-lang="ja">録音ごとに文字のファイルができ、ファイル App や Mac の Finder で読めます。</p>
+        <p data-lang="en">Each recording becomes a text file you can read in the Files app or in Finder on a Mac.</p>
+        <ol class="how" data-lang="ja">
+          <li>iCloud Drive のカードを選び<span class="ui">「フォルダを選ぶ」</span></li>
+          <li>ファイルの画面で <strong>iCloud Drive</strong> を開く（「最近使った項目」が出たら、下の「ブラウズ」から）</li>
+          <li>新規フォルダ（フォルダに＋の形のボタン、または ⋯ の中）で <strong>Echona</strong> を作って、その中に入る</li>
+          <li>右上の <strong>開く</strong>。アプリに戻ったら<span class="ui">「次へ」</span></li>
+        </ol>
+        <ol class="how" data-lang="en">
+          <li>Pick the iCloud Drive card, then <span lang="ja">「フォルダを選ぶ」</span> (Choose folder)</li>
+          <li>In the Files screen, open <strong>iCloud Drive</strong> (if you see Recents, tap Browse at the bottom)</li>
+          <li>Make a new folder (the folder-with-plus button, or under ⋯) named <strong>Echona</strong> and go into it</li>
+          <li>Tap <strong>Open</strong> at the top right. Back in the app, tap <span lang="ja">「次へ」</span> (Next)</li>
+        </ol>
+        <p class="callout" data-lang="ja">カードの下に「✓『Echona』に保存しています」と出れば完了。録音は、そのフォルダの中の Echona › Recordings に入ります。</p>
+        <p class="callout" data-lang="en">Done when “✓ <span lang="ja">「Echona」</span>に保存しています” (Saving to “Echona”) appears under the cards. Recordings go into Echona › Recordings inside that folder.</p>
+      </div>
+      <div class="shots one">
+        <figure>
+          <img class="phone" src="img/guide-dest-icloud.jpg" width="600" height="1304" alt="iCloud Drive を選んだ画面。フォルダの選び方の絵と「フォルダを選ぶ」ボタン" data-alt-en="iCloud Drive picked, with a picture of how to choose the folder" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="dest-obsidian">
+    <span class="tag" data-lang="ja">Obsidian を使っている</span><span class="tag" data-lang="en">If you use Obsidian</span>
+    <h3>Obsidian</h3>
+    <p data-lang="ja">録音ごとに、Obsidian の保管庫へノートとして入ります。</p>
+    <p data-lang="en">Each recording lands in your Obsidian vault as a note.</p>
+    <p class="note" data-lang="ja">先に、iPhone の Obsidian アプリで「保管庫を新規作成」で、<strong>iCloudに保存</strong> をオンにして保管庫を作っておきます。</p>
+    <p class="note" data-lang="en">First, in the Obsidian iPhone app, use Create new vault with <strong>Store in iCloud</strong> turned on.</p>
+    <ol class="how" data-lang="ja">
+      <li>Obsidian のカードを選び<span class="ui">「フォルダを選ぶ」</span></li>
+      <li><strong>iCloud Drive › Obsidian › 自分の保管庫</strong> と開く</li>
+      <li>保管庫の中で、右上の <strong>開く</strong>。アプリに戻ったら<span class="ui">「次へ」</span></li>
+    </ol>
+    <ol class="how" data-lang="en">
+      <li>Pick the Obsidian card, then <span lang="ja">「フォルダを選ぶ」</span> (Choose folder)</li>
+      <li>Open <strong>iCloud Drive › Obsidian › your vault</strong></li>
+      <li>Inside the vault, tap <strong>Open</strong> at the top right. Back in the app, tap <span lang="ja">「次へ」</span> (Next)</li>
+    </ol>
+    <p class="callout" data-lang="ja">「Obsidian」フォルダそのものではなく、その中の<strong>自分の保管庫</strong>に入ってから「開く」。カードの下に保管庫の名前で「✓ 保存しています」と出れば完了です。</p>
+    <p class="callout" data-lang="en">Go <strong>into your vault</strong> first, not just the “Obsidian” folder, then tap Open. Done when “✓ …に保存しています” (Saving to …) shows your vault's name under the cards.</p>
+    <div class="shots">
+      <figure>
+        <img class="phone" src="img/guide-dest-obsidian.jpg" width="600" height="1304" alt="Obsidian を選んだ画面。保管庫の選び方の絵" data-alt-en="Obsidian picked, with a picture of how to choose the vault" loading="lazy" decoding="async">
+        <figcaption><span data-lang="ja">選んで<span lang="ja">「フォルダを選ぶ」</span></span><span data-lang="en">Pick it, then <span lang="ja">「フォルダを選ぶ」</span></span></figcaption>
+      </figure>
+      <figure>
+        <img class="phone" src="img/guide-dest-picked.jpg" width="600" height="1304" alt="保管庫を選んだ後。カードの下に「✓ 保存しています」" data-alt-en="After choosing the vault: “✓ Saving to …” under the cards" loading="lazy" decoding="async">
+        <figcaption><span data-lang="ja">✓ が出れば完了（例の保管庫名は Vault）</span><span data-lang="en">The ✓ means done (the example vault is “Vault”)</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card" id="change">
+    <div class="split">
+      <div>
+        <h3 data-lang="ja">あとから変える</h3>
+        <h3 data-lang="en">Changing it later</h3>
+        <p data-lang="ja">今日の画面の右上の歯車 › 保存先の<span class="ui">「変更」</span>。カードを選び、フォルダを選ぶ2つは<span class="ui">「フォルダを選ぶ」</span>（選んであれば<span class="ui">「フォルダを選び直す」</span>）、「Echona の中だけ」は<span class="ui">「Echona の中だけにする」</span>で決まります。</p>
+        <p data-lang="en">The gear at the top right of the Today screen › <span lang="ja">「変更」</span> (Change) next to <span lang="ja">保存先</span> (Save to). Pick a card; for the two folder options use <span lang="ja">「フォルダを選ぶ」</span> (Choose folder) or <span lang="ja">「フォルダを選び直す」</span> (Choose again), and for Echona only tap <span lang="ja">「Echona の中だけにする」</span> (Keep in Echona only).</p>
+        <ul class="dots" data-lang="ja">
+          <li>フォルダへは、iPhone のロックを解除したときや、アプリを開いたときに書き出します。</li>
+          <li>保存先を変えると、新しいフォルダにすべての録音を書き直します。前のフォルダのファイルはそのまま残ります。</li>
+        </ul>
+        <ul class="dots" data-lang="en">
+          <li>Files are written to the folder when you unlock your iPhone or open the app.</li>
+          <li>Changing the destination rewrites every recording into the new folder. Files in the old folder stay where they are.</li>
+        </ul>
+      </div>
+      <div class="shots one">
+        <figure>
+          <img class="phone" src="img/guide-settings.jpg" width="600" height="1304" alt="設定の画面。保存先の「変更」ボタン" data-alt-en="Settings, with the Change button next to 保存先 (Save to)" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Everyday use -->
+<section class="part" id="use">
+  <h2><span class="num">03</span><span data-lang="ja">毎日の使い方</span><span data-lang="en">Everyday use</span></h2>
+  <p class="part-lead" data-lang="ja">直す・共有・削除は「録音の画面」から。今日の画面で題名を押すか、下の<span class="ui">「録音の一覧」</span>から録音を押すと開きます。</p>
+  <p class="part-lead" data-lang="en">Fix, Share and Delete live on a recording's screen. Open it by tapping a title on the Today screen, or a recording in <span lang="ja">「録音の一覧」</span> (All recordings) at the bottom.</p>
+
+  <div class="card" id="record">
+    <div class="split">
+      <div>
+        <h3 data-lang="ja">録音のしかた</h3>
+        <h3 data-lang="en">Recording</h3>
+        <p data-lang="ja">横のボタンを押して話し、もう一度押して止めます。ロックしたままで大丈夫。ロック中に録った分は、次にアプリを開いたときに文字になることがあります。</p>
+        <p data-lang="en">Press the Action button, talk, and press it again to stop. Your iPhone can stay locked. Recordings made while locked may be transcribed the next time you open the app.</p>
+        <p data-lang="ja"><strong>アクションボタンが無い iPhone</strong> は、次のどれかで。</p>
+        <p data-lang="en"><strong>No Action button?</strong> Use any of these:</p>
+        <ul class="dots" data-lang="ja">
+          <li>アプリの<span class="ui">「録音」</span>ボタン</li>
+          <li>コントロールセンターに「Echona 録音」を追加（コントロールセンターを開き、左上の <strong>＋</strong> › <strong>コントロールを追加</strong> › Echona）</li>
+          <li>ロック画面の下のボタンを「Echona 録音」に替える（ロック画面を長押し › <strong>カスタマイズ</strong> › 下のボタンの［−］で外し、［＋］から Echona 録音）</li>
+          <li>Siri に「Echonaで録音」と話す</li>
+        </ul>
+        <ul class="dots" data-lang="en">
+          <li>The <span lang="ja">「録音」</span> (Record) button in the app</li>
+          <li>Add “Echona 録音” to Control Center (open Control Center, tap <strong>+</strong> at the top left › <strong>Add a Control</strong> › Echona)</li>
+          <li>Put “Echona 録音” on the Lock Screen (touch and hold the Lock Screen › <strong>Customize</strong> › tap − on a bottom button, then + and choose Echona 録音)</li>
+          <li>Ask Siri: “Echonaで録音”</li>
+        </ul>
+      </div>
+      <div class="shots one">
+        <figure>
+          <img class="phone" src="img/guide-top.jpg" width="600" height="1304" alt="今日の画面。下に「録音」ボタン" data-alt-en="The Today screen with the Record button" loading="lazy" decoding="async">
+          <figcaption><span data-lang="ja">今日の画面の<span lang="ja">「録音」</span></span><span data-lang="en"><span lang="ja">「録音」</span> (Record) on the Today screen</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="fix">
+    <h3 data-lang="ja">誤字の手直し</h3>
+    <h3 data-lang="en">Fixing mistakes</h3>
+    <p data-lang="ja">録音の画面の<span class="ui">「直す」</span>で文字を直して<span class="ui">「保存」</span>。直した語は用語リストに覚えます。</p>
+    <p data-lang="en">On a recording's screen, tap <span lang="ja">「直す」</span> (Fix), correct the text and tap <span lang="ja">「保存」</span> (Save). Echona remembers the words you fixed.</p>
+    <div class="shots">
+      <figure>
+        <img class="phone" src="img/guide-detail.jpg" width="600" height="1304" alt="録音の画面。「共有」と「直す」のボタン" data-alt-en="A recording's screen with Share and Fix" loading="lazy" decoding="async">
+        <figcaption><span data-lang="ja"><span lang="ja">「直す」</span></span><span data-lang="en"><span lang="ja">「直す」</span> (Fix)</span></figcaption>
+      </figure>
+      <figure>
+        <img class="phone" src="img/guide-fix.jpg" width="600" height="1304" alt="「文字起こしを直す」の画面" data-alt-en="The fix-the-transcript screen" loading="lazy" decoding="async">
+        <figcaption><span data-lang="ja">直して<span lang="ja">「保存」</span></span><span data-lang="en">Edit, then <span lang="ja">「保存」</span> (Save)</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card" id="share">
+    <div class="split">
+      <div>
+        <h3 data-lang="ja">共有</h3>
+        <h3 data-lang="en">Sharing</h3>
+        <p data-lang="ja">録音の画面の<span class="ui">「共有」</span>で、題名と文字をメモ・LINE・Notion など好きなアプリへ。直した後があれば、直した文を送ります。音声は送りません。</p>
+        <p data-lang="en">On a recording's screen, <span lang="ja">「共有」</span> (Share) sends its title and text to any app you like: Notes, LINE, Notion… If you fixed it, the fixed text goes. The audio is never sent.</p>
+      </div>
+      <div class="shots one">
+        <figure>
+          <img class="phone" src="img/guide-share.jpg" width="600" height="1304" alt="共有の画面。送り先のアプリを選ぶ" data-alt-en="The share sheet, choosing an app" loading="lazy" decoding="async">
+        <figcaption><span data-lang="ja">写真はシミュレータなので、並ぶアプリが少なめです</span><span data-lang="en">A simulator, so few apps are listed</span></figcaption></figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="delete">
+    <div class="split">
+      <div>
+        <h3 data-lang="ja">削除</h3>
+        <h3 data-lang="en">Deleting</h3>
+        <p data-lang="ja">録音の画面のいちばん下<span class="ui">「録音を削除」</span> › <span class="ui">「削除」</span>。取り消せません。</p>
+        <p data-lang="en">At the bottom of a recording's screen, <span lang="ja">「録音を削除」</span> (Delete recording) › <span lang="ja">「削除」</span> (Delete). This can't be undone.</p>
+        <p class="note" data-lang="ja">今の保存先のフォルダにある、その録音のノートも消えます。1日のまとめや用語リスト、前の保存先のフォルダのファイルは残ります。</p>
+        <p class="note" data-lang="en">Its note in your current save folder is deleted too. Daily summaries, the word list and files in a previous save folder stay.</p>
+      </div>
+      <div class="shots one">
+        <figure>
+          <img class="phone" src="img/guide-delete.jpg" width="600" height="1304" alt="「この録音を削除しますか？」の確認" data-alt-en="The “Delete this recording?” confirmation" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="digest">
+    <div class="split">
+      <div>
+        <span class="tag" data-lang="ja">Mac・上級者向け</span><span class="tag" data-lang="en">Mac · advanced</span>
+        <h3 data-lang="ja">1日のまとめ</h3>
+        <h3 data-lang="en">Daily summary</h3>
+        <p data-lang="ja">Mac の Claude Desktop（Anthropic 社のアプリ）の定期タスクが毎晩、その日の録音から1日のまとめを作り、アプリの<span class="ui">「1日のまとめ」</span>で読めます。</p>
+        <p data-lang="en">A scheduled task in Claude Desktop (an app by Anthropic) on your Mac writes a summary of the day's recordings every night. Read it under <span lang="ja">「1日のまとめ」</span> (Daily summary) in the app.</p>
+        <p class="note" data-lang="ja">Mac の定期タスクは、その文字を Anthropic 社に送って処理します（使うかは任意で、あなた自身のアカウントで設定します）。保存先が iCloud Drive か Obsidian のときに使えます。Mac 側の設定の手順は、いま準備中です（試したい方は下のメールへ）。なくても Echona はそのまま使えます。</p>
+        <p class="note" data-lang="en">The Mac task sends that text to Anthropic for processing (optional, set up with your own account). Works when you save to iCloud Drive or Obsidian. Setup instructions for the Mac are still being prepared (email us below if you'd like to try it). Echona works fine without it.</p>
+      </div>
+      <div class="shots one">
+        <figure>
+          <img class="phone" src="img/guide-digest.jpg" width="600" height="1304" alt="「1日のまとめ」の画面" data-alt-en="The Daily summary screen" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Support -->
+<section class="part" id="support">
+  <h2><span class="num">04</span><span data-lang="ja">サポート</span><span data-lang="en">Support</span></h2>
+  <dl class="req" data-lang="ja">
+    <dt>動作条件</dt>
+    <dd>iOS 26 以降（iPhone 11 以降、iPhone SE 第2世代以降）。文字起こしは日本語のみ。</dd>
+    <dt>題名・分類（端末内 AI）</dt>
+    <dd>Apple Intelligence 対応機種（iPhone 15 Pro / 15 Pro Max、iPhone 16 シリーズ・16e、iPhone 17 シリーズ・Air 以降）で Apple Intelligence をオン。</dd>
+    <dt>お問い合わせ</dt>
+    <dd><a href="mailto:because232t@gmail.com">because232t@gmail.com</a></dd>
+  </dl>
+  <dl class="req" data-lang="en">
+    <dt>Requirements</dt>
+    <dd>iOS 26 or later (iPhone 11 or later, iPhone SE 2nd generation or later). Transcription supports Japanese only.</dd>
+    <dt>Titles and categories (on-device AI)</dt>
+    <dd>An Apple Intelligence iPhone (iPhone 15 Pro / 15 Pro Max, iPhone 16 family incl. 16e, iPhone 17 family and Air, or later) with Apple Intelligence turned on.</dd>
+    <dt>Contact</dt>
+    <dd><a href="mailto:because232t@gmail.com">because232t@gmail.com</a></dd>
+  </dl>
+  <p data-lang="ja"><a href="privacy-policy.html">プライバシーポリシー</a></p>
+  <p data-lang="en"><a href="privacy-policy.html#en">Privacy Policy</a></p>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span data-lang="ja">画面はシミュレータの iPhone 17 と、例として作った録音です。</span>
+    <span data-lang="en">Screens: iPhone 17 simulator with sample recordings.</span>
+  </div>
+</footer>
+
+<script>
+  var TITLES = { ja: 'Echona の使い方', en: 'How to use Echona' };
+  function setLanguage(lang) {
+    document.documentElement.lang = lang;
+    document.title = TITLES[lang];
+    try { localStorage.setItem('echona-lang', lang); } catch (e) {}
+    document.getElementById('lang-ja').classList.toggle('active', lang === 'ja');
+    document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+    // Shown only with JS (it does nothing without it); says what pressing it does.
+    var toggle = document.querySelector('.lang-toggle');
+    toggle.hidden = false;
+    toggle.setAttribute('aria-label', lang === 'ja' ? 'Switch to English' : '日本語に切り替え');
+    document.querySelectorAll('img[data-alt-en]').forEach(function (img) {
+      if (!img.dataset.altJa) img.dataset.altJa = img.alt;
+      img.alt = lang === 'en' ? img.dataset.altEn : img.dataset.altJa;
+    });
+  }
+  function toggleLanguage() {
+    setLanguage(document.documentElement.lang === 'ja' ? 'en' : 'ja');
+  }
+  setLanguage(document.documentElement.lang);
+</script>
+</body>
+</html>
