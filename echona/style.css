@@ -172,3 +172,33 @@ footer a { color: var(--cream-2); }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
 }
+
+/* Buttons and copyable lines (Mac setup page). Primary = deep vermilion with white text, like the app. */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; margin: 16px 0 0; padding: 12px 20px;
+  border-radius: 12px; font: 600 15px/1.2 var(--gothic); letter-spacing: 0.04em; text-decoration: none; cursor: pointer;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+.btn-primary {
+  color: #fff; background: var(--accent-fill);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.14) inset, 0 6px 20px rgba(192, 81, 58, 0.28);
+}
+.btn-primary:hover { color: #fff; background: #cb5b43; transform: translateY(-1px); }
+.btn-primary:active { background: var(--accent-fill-deep); transform: translateY(0); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset; }
+.btn-primary:focus-visible { outline: 2px solid var(--cream); outline-offset: 3px; }
+.btn[aria-disabled="true"] { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+
+pre.line {
+  margin: 10px 0 0; padding: 12px 14px; border-radius: 12px; overflow-x: auto;
+  background: var(--raised); border: 1px solid var(--hairline);
+  font: 14px/1.7 ui-monospace, "SF Mono", Menlo, var(--gothic); white-space: pre-wrap; user-select: all; -webkit-user-select: all;
+}
+code { font-family: ui-monospace, "SF Mono", Menlo, var(--gothic); font-size: 0.92em; }
+
+table.where { width: 100%; border-collapse: collapse; margin: 14px 0 0; font-size: 15px; }
+table.where th, table.where td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--hairline); vertical-align: top; }
+table.where th { color: var(--cream-2); font-weight: 600; font-size: 13px; }
+table.where .ok { color: var(--cream); font-weight: 600; }
+table.where .no { color: var(--cream-3); }
+.callout p { margin: 0; }
+table.where td:first-child { white-space: nowrap; padding-right: 14px; }

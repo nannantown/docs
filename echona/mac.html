@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0e1320">
+<title>Mac で毎晩のまとめを作る / Nightly summary on a Mac</title>
+<meta name="description" content="Echona の録音から、Mac の Claude Desktop で毎晩1日のまとめを作る設定の手順。How to set up the nightly summary on your Mac with Claude Desktop.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='8' fill='%230a0e18'/%3E%3Crect x='9' y='8' width='3' height='16' rx='1.5' fill='%23d65f46'/%3E%3Crect x='15' y='9' width='8' height='2.4' rx='1.2' fill='%23f2e6d3'/%3E%3Crect x='15' y='14.8' width='6' height='2.4' rx='1.2' fill='%23f2e6d3'/%3E%3Crect x='15' y='20.6' width='8' height='2.4' rx='1.2' fill='%23f2e6d3'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script>
+  // Before first paint: ?lang= > the reader's last choice > the browser's language.
+  (function () {
+    var lang;
+    try { lang = localStorage.getItem('echona-lang'); } catch (e) {}
+    var q = /[?&]lang=(ja|en)/.exec(location.search);
+    if (q) lang = q[1];
+    if (lang !== 'ja' && lang !== 'en') lang = /^ja/i.test(navigator.language || '') ? 'ja' : 'en';
+    document.documentElement.lang = lang;
+  })();
+</script>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="./">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0a0e18" stroke="rgba(242,230,211,.14)"/><rect x="9" y="8" width="3" height="16" rx="1.5" fill="#d65f46"/><rect x="15" y="9" width="8" height="2.4" rx="1.2" fill="#f2e6d3"/><rect x="15" y="14.8" width="6" height="2.4" rx="1.2" fill="#f2e6d3"/><rect x="15" y="20.6" width="8" height="2.4" rx="1.2" fill="#f2e6d3"/></svg>
+      Echona
+    </a>
+    <button class="lang-toggle" type="button" hidden onclick="toggleLanguage()">
+      <span id="lang-ja">JA</span><span id="lang-en">EN</span>
+    </button>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+<div class="hero">
+  <p class="eyebrow" data-lang="ja">Mac・任意</p>
+  <p class="eyebrow" data-lang="en">MAC · OPTIONAL</p>
+  <h1 data-lang="ja">Mac で、<br>毎晩のまとめ。</h1>
+  <h1 data-lang="en">A nightly summary,<br>made on your Mac.</h1>
+  <p class="lead" data-lang="ja">あなたの Mac の Claude Desktop（Anthropic 社のアプリ）が毎晩、その日の録音を読み、聞き間違いを直した版と「1日のまとめ」を作ります。まとめは iPhone の Echona の<span class="ui">「1日のまとめ」</span>で読めます。設定は最初に1回、15分ほどです。</p>
+  <p class="lead" data-lang="en">Every night, Claude Desktop (an app by Anthropic) on your Mac reads the day's recordings and writes a corrected transcript and a daily summary. Read the summary under <span lang="ja">「1日のまとめ」</span> (Daily summary) in Echona on your iPhone. Setup takes about 15 minutes, once.</p>
+  <ul class="toc">
+    <li><a href="#needs"><span data-lang="ja">必要なもの</span><span data-lang="en">What you need</span></a></li>
+    <li><a href="#steps"><span data-lang="ja">設定の手順</span><span data-lang="en">Setup</span></a></li>
+    <li><a href="#help"><span data-lang="ja">困ったとき</span><span data-lang="en">Troubleshooting</span></a></li>
+  </ul>
+  <p class="note" data-lang="ja">これは任意の機能です。設定しなくても、Echona の録音と文字起こしはそのまま使えます。</p>
+  <p class="note" data-lang="en">This is optional. Echona's recording and transcription work fine without it.</p>
+</div>
+
+<!-- 1. What you need -->
+<section class="part" id="needs">
+  <h2><span class="num">01</span><span data-lang="ja">必要なもの</span><span data-lang="en">What you need</span></h2>
+  <dl class="req" data-lang="ja">
+    <dt>Mac</dt>
+    <dd>macOS 11 以降。夜のあいだ Mac が起きていて（スリープしていない）、Claude Desktop が開いていること。</dd>
+    <dt>Claude Desktop</dt>
+    <dd>Anthropic 社の Mac アプリ（無料でダウンロード）。定期タスク（Routines）が使える新しい版にしてください。</dd>
+    <dt>Claude の有料プラン</dt>
+    <dd>Pro・Max・Team・Enterprise のどれか。Claude Desktop の「Code」は無料プランでは使えません。まとめを作るたびに、そのプランの利用枠を使います。</dd>
+    <dt>Echona の保存先</dt>
+    <dd>iCloud Drive か Obsidian（下の表）。</dd>
+  </dl>
+  <dl class="req" data-lang="en">
+    <dt>A Mac</dt>
+    <dd>macOS 11 or later, awake (not asleep) overnight with Claude Desktop open.</dd>
+    <dt>Claude Desktop</dt>
+    <dd>Anthropic's Mac app (free download). Use a recent version that has scheduled tasks (Routines).</dd>
+    <dt>A paid Claude plan</dt>
+    <dd>Pro, Max, Team or Enterprise. The “Code” part of Claude Desktop isn't available on the free plan. Each nightly run uses your plan's usage.</dd>
+    <dt>Echona's save location</dt>
+    <dd>iCloud Drive or Obsidian (see the table).</dd>
+  </dl>
+
+  <table class="where" data-lang="ja">
+    <thead><tr><th>Echona の保存先</th><th>毎晩のまとめ</th></tr></thead>
+    <tbody>
+      <tr><td>Echona の中だけ</td><td class="no">使えません（録音の文字が iPhone の中にだけあり、Mac から読めないため）</td></tr>
+      <tr><td>iCloud Drive</td><td class="ok">使えます</td></tr>
+      <tr><td>Obsidian</td><td><span class="ok">保管庫が iCloud Drive にあるとき使えます</span>（Obsidian Sync などで Mac にも同じ保管庫があるときも使えます。まとめやテーマ別ノートも Obsidian で読めます）。<span class="no">「この iPhone 内」に置いた保管庫は、Mac から読めないので使えません。</span></td></tr>
+    </tbody>
+  </table>
+  <table class="where" data-lang="en">
+    <thead><tr><th>Echona saves to</th><th>Nightly summary</th></tr></thead>
+    <tbody>
+      <tr><td><span lang="ja">Echona の中だけ</span> (Echona only)</td><td class="no">Not available (the text stays on the iPhone, so the Mac can't read it)</td></tr>
+      <tr><td>iCloud Drive</td><td class="ok">Available</td></tr>
+      <tr><td>Obsidian</td><td><span class="ok">Available when the vault is in iCloud Drive</span> (or when the same vault is also on your Mac, e.g. with Obsidian Sync; summaries and topic notes are readable in Obsidian too). <span class="no">A vault stored “On My iPhone” can't be read by the Mac, so it won't work.</span></td></tr>
+    </tbody>
+  </table>
+  <p class="note" data-lang="ja">保存先は Echona の <span class="ui">設定 › 保存先</span> で変えられます。選び方は <a href="./#destination">保存先の選び方</a> へ。</p>
+  <p class="note" data-lang="en">Change it in Echona under <span lang="ja">設定 › 保存先</span> (Settings › Save location). See <a href="./#destination">Where to save</a>.</p>
+
+  <div class="callout" id="privacy">
+    <p data-lang="ja"><strong>文字は Anthropic 社に送られます。</strong>この設定をすると、あなたの Mac の Claude Desktop が、保存先のフォルダの中の <code>Echona</code> フォルダにあるファイル（録音の文字＝文字起こし・題名・カテゴリ・一行要約、用語リスト、それまでのまとめや目次）を読み、Anthropic 社のサーバーへ送って処理します。手順書は <code>Echona</code> フォルダの外（ほかのノートやファイル）は読まないように書いてあります。音声は送られません（フォルダに音声は書き出されないため）。扱いは <a href="https://www.anthropic.com/legal/privacy" rel="noopener">Anthropic 社のプライバシーポリシー</a> に従います。Echona のアプリ自体は、私たちにも、どこかのサーバーにも送りません（<a href="privacy-policy.html">プライバシーポリシー</a> の 6）。</p>
+    <p data-lang="en"><strong>Your text is sent to Anthropic.</strong> Once you set this up, Claude Desktop on your Mac reads the files in the <code>Echona</code> folder inside your save folder (recording text: transcripts, titles, categories, one-line summaries; word lists; earlier summaries and the index) and sends them to Anthropic's servers for processing. The task file tells it not to read anything outside <code>Echona</code> (your other notes and files). Audio is not sent (it is never written to the folder). It is handled under <a href="https://www.anthropic.com/legal/privacy" rel="noopener">Anthropic's Privacy Policy</a>. The Echona app itself sends nothing to us or to any server (<a href="privacy-policy.html#en">Privacy Policy</a>, section 6).</p>
+  </div>
+</section>
+
+<!-- 2. Setup -->
+<section class="part" id="steps">
+  <h2><span class="num">02</span><span data-lang="ja">設定の手順</span><span data-lang="en">Setup</span></h2>
+  <p class="part-lead" data-lang="ja">手順 2 からは Mac で行います。スマホで読んでいる方は、Mac でこのページを開いてください。</p>
+  <p class="part-lead" data-lang="en">From step 2 on, you work on the Mac. Reading this on a phone? Open this page on your Mac.</p>
+
+  <ol class="steps">
+    <li class="step">
+      <span class="node">1</span>
+      <h3 data-lang="ja">iPhone で保存先を選び、1回録音する</h3>
+      <h3 data-lang="en">On the iPhone, pick a folder and record once</h3>
+      <p data-lang="ja">Echona の保存先を iCloud Drive か Obsidian にして、何か1回録音します。選んだフォルダの中に <code>Echona</code> フォルダができ、録音の文字が入ります。</p>
+      <p data-lang="en">Set Echona to save to iCloud Drive or Obsidian, then make one recording. An <code>Echona</code> folder appears inside the folder you picked, holding the text.</p>
+      <p class="note" data-lang="ja">Mac の Finder で、そのフォルダに <code>Echona</code> が見えるまで待ちます（iCloud の同期に数分かかることがあります）。iCloud Drive なら Finder のサイドバーの「iCloud Drive」の中、Obsidian なら「iCloud Drive › Obsidian › 保管庫の名前」です（Obsidian Sync などで同期している場合は、Mac のその保管庫のフォルダ）。</p>
+      <p class="note" data-lang="ja">Obsidian の保管庫が「この iPhone 内」にあるときは、Mac から読めないため、この機能は使えません。iCloud に置いた保管庫を選んでください。</p>
+      <p class="note" data-lang="en">Wait until you see <code>Echona</code> in that folder in Finder on your Mac (iCloud may take a few minutes). For iCloud Drive it's under “iCloud Drive” in the Finder sidebar; for Obsidian, “iCloud Drive › Obsidian › your vault name” (or, if you sync it with Obsidian Sync or similar, the vault's folder on your Mac).</p>
+      <p class="note" data-lang="en">An Obsidian vault stored “On My iPhone” can't be read by the Mac, so this won't work with it. Choose a vault stored in iCloud.</p>
+    </li>
+
+    <li class="step">
+      <span class="node">2</span>
+      <h3 data-lang="ja">手順書をダウンロードして、そのフォルダに置く</h3>
+      <h3 data-lang="en">Download the task file into that folder</h3>
+      <p data-lang="ja">Claude が毎晩読む手順書（テキストファイル）です。ダウンロードしたら、手順 1 のフォルダ（<code>Echona</code> フォルダが<strong>入っている</strong>フォルダ。<code>Echona</code> の中ではありません）へ移します。</p>
+      <p data-lang="en">This is the text file Claude follows every night. Move it into the folder from step 1 (the folder that <strong>contains</strong> <code>Echona</code>, not inside <code>Echona</code>).</p>
+      <a class="btn btn-primary" href="mac/echona-nightly.md" download="echona-nightly.md"><span data-lang="ja">手順書をダウンロード</span><span data-lang="en">Download the task file</span></a>
+      <p class="note" data-lang="ja">ファイル名は <code>echona-nightly.md</code> のままにします。Obsidian では、保管庫に「echona-nightly」というノートとして見えます（書き換えないでください）。</p>
+      <p class="note" data-lang="en">Keep the name <code>echona-nightly.md</code>. In Obsidian it shows up as a note called “echona-nightly” (leave it as is).</p>
+    </li>
+
+    <li class="step">
+      <span class="node">3</span>
+      <h3 data-lang="ja">Claude Desktop に定期タスクを作る</h3>
+      <h3 data-lang="en">Create a scheduled task in Claude Desktop</h3>
+      <ol class="how" data-lang="ja">
+        <li>Claude Desktop の <strong>Code</strong> を開き、サイドバーの <strong>Routines</strong> → <strong>New routine</strong> → <strong>Local</strong></li>
+        <li>名前: <code>echona-nightly</code></li>
+        <li>指示（Instructions）: 下の1行をそのまま貼る</li>
+        <li>権限モード（指示の欄の切り替え）: <strong>Accept edits</strong></li>
+        <li>作業フォルダ: 手順 2 のフォルダを選ぶ（信頼するか聞かれたら信頼する）。worktree はオフ</li>
+        <li>スケジュール: <strong>Daily</strong>、23:00（寝る前の好きな時刻でかまいません）</li>
+      </ol>
+      <pre class="line" data-lang="ja">echona-nightly.md を読んで、その手順どおりに実行して。</pre>
+      <ol class="how" data-lang="en">
+        <li>In Claude Desktop open <strong>Code</strong>, then <strong>Routines</strong> in the sidebar → <strong>New routine</strong> → <strong>Local</strong></li>
+        <li>Name: <code>echona-nightly</code></li>
+        <li>Instructions: paste the line below as is</li>
+        <li>Permission mode (switch in the instructions box): <strong>Accept edits</strong></li>
+        <li>Folder: choose the folder from step 2 (trust it if asked). Worktree off</li>
+        <li>Schedule: <strong>Daily</strong> at 23:00 (any time before bed works)</li>
+      </ol>
+      <pre class="line" data-lang="en">Read echona-nightly.md and follow its steps exactly.</pre>
+    </li>
+
+    <li class="step">
+      <span class="node">4</span>
+      <h3 data-lang="ja">「Run now」で1回だけ動かし、すべて許可する</h3>
+      <h3 data-lang="en">Press “Run now” once and allow everything</h3>
+      <p data-lang="ja">できたタスクの <strong>Run now</strong>（今すぐ実行）を押します。夜中に許可待ちで止まらないよう、最初の1回で許可をそろえます。</p>
+      <p data-lang="en">Press <strong>Run now</strong> on the new task. Granting permissions now keeps the nightly run from stopping to ask.</p>
+      <ul class="dots" data-lang="ja">
+        <li>Mac から「ファイルへのアクセス」（iCloud Drive など）を聞かれたら <strong>許可</strong></li>
+        <li>Claude から確認（<code>ls</code> や <code>date</code> などのコマンド）を聞かれたら、すべて <strong>Always allow</strong>（常に許可）</li>
+        <li>終わると <code>Echona</code> フォルダに <code>_index.md</code>（目次）・<code>_tags.md</code>（カテゴリ）・<code>_glossary.md</code>（用語リスト）ができます。録音がある日は、まとめも作られます</li>
+      </ul>
+      <ul class="dots" data-lang="en">
+        <li>If macOS asks for access to files (iCloud Drive, etc.), choose <strong>Allow</strong></li>
+        <li>If Claude asks to run commands (such as <code>ls</code> or <code>date</code>), choose <strong>Always allow</strong> each time</li>
+        <li>When it's done, the <code>Echona</code> folder has <code>_index.md</code> (contents), <code>_tags.md</code> (categories) and <code>_glossary.md</code> (word list). Days with recordings also get a summary</li>
+      </ul>
+    </li>
+
+    <li class="step">
+      <span class="node">5</span>
+      <h3 data-lang="ja">夜のあいだ Mac を起こしておく</h3>
+      <h3 data-lang="en">Keep the Mac awake at night</h3>
+      <p data-lang="ja">Claude Desktop の 設定 → <strong>Desktop app</strong> → <strong>General</strong> で <strong>Keep computer awake</strong> をオンにします。夜は Claude Desktop を開いたまま、ノート型ならふたを開けたまま（電源につないで）にします。</p>
+      <p data-lang="en">In Claude Desktop, Settings → <strong>Desktop app</strong> → <strong>General</strong>, turn on <strong>Keep computer awake</strong>. Leave Claude Desktop open overnight; on a laptop, keep the lid open (and plugged in).</p>
+      <p class="note" data-lang="ja">ふたを閉じる・スリープすると、その時刻の回は飛ばされます。次に Mac と Claude Desktop が起きたとき、直近の1回だけ後から動き、7日前までの録音をまとめて拾います。</p>
+      <p class="note" data-lang="en">If the Mac sleeps (or the lid is closed), that run is skipped. The next time the Mac and Claude Desktop are awake, one catch-up run starts and picks up the last 7 days of recordings.</p>
+    </li>
+
+    <li class="step">
+      <span class="node">6</span>
+      <h3 data-lang="ja">翌朝、iPhone で読む</h3>
+      <h3 data-lang="en">Read it the next morning</h3>
+      <p data-lang="ja">Echona の<span class="ui">「1日のまとめ」</span>に前の日のまとめが届きます。聞き間違いを直した版は、録音の画面で変わった語を確かめてから使えます。</p>
+      <p data-lang="en">The previous day's summary appears under <span lang="ja">「1日のまとめ」</span> (Daily summary) in Echona. Corrected transcripts show the changed words on the recording's screen so you can check them first.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- 3. Troubleshooting -->
+<section class="part" id="help">
+  <h2><span class="num">03</span><span data-lang="ja">困ったとき</span><span data-lang="en">Troubleshooting</span></h2>
+  <dl class="req" data-lang="ja">
+    <dt>「Echona フォルダがありません」と返ってきた</dt>
+    <dd>作業フォルダが違います。定期タスクの作業フォルダを、<code>Echona</code> フォルダが入っているフォルダにし、<code>echona-nightly.md</code> もそこに置きます。</dd>
+    <dt>「まとめる録音はありませんでした」と返ってきた</dt>
+    <dd>まとめる新しい録音が直近7日に無かった、という意味です。録音した日の夜に、もう一度確かめてください。</dd>
+    <dt>朝になってもまとめが届かない</dt>
+    <dd>Mac がスリープしていた、Claude Desktop を閉じていた、許可待ちで止まっていた、のどれかがよくある理由です。Routines のタスクの記録（サイドバーの Scheduled）を見て、止まっていたら許可してから Run now を押します。iPhone 側は、まとめのファイルが iCloud から届くまで数分かかることがあります。</dd>
+    <dt>人名や言葉の聞き間違いを減らしたい</dt>
+    <dd><code>Echona/_glossary.md</code>（用語リスト）に正しい書き方を書き足します。Claude が毎晩これを見て直します。</dd>
+    <dt>やめたいとき</dt>
+    <dd>Claude Desktop の Routines で <code>echona-nightly</code> を削除します。作られたまとめなどのファイルは残るので、要らなければ自分で消してください。</dd>
+    <dt>お問い合わせ</dt>
+    <dd><a href="mailto:because232t@gmail.com">because232t@gmail.com</a></dd>
+  </dl>
+  <dl class="req" data-lang="en">
+    <dt>It replied that there is no Echona folder</dt>
+    <dd>The folder is wrong. Set the task's folder to the one that contains <code>Echona</code>, and put <code>echona-nightly.md</code> there too.</dd>
+    <dt>It replied that there were no recordings to summarize</dt>
+    <dd>There were no new recordings in the last 7 days. Check again on the night of a day you recorded.</dd>
+    <dt>No summary in the morning</dt>
+    <dd>Usually the Mac was asleep, Claude Desktop was closed, or the run stopped waiting for permission. Check the task's runs (Scheduled in the sidebar); if one is waiting, allow it and press Run now. On the iPhone, the summary may take a few minutes to arrive from iCloud.</dd>
+    <dt>Fewer misheard names and words</dt>
+    <dd>Add the correct spellings to <code>Echona/_glossary.md</code> (word list). Claude checks it every night.</dd>
+    <dt>To stop</dt>
+    <dd>Delete <code>echona-nightly</code> in Claude Desktop's Routines. Summary files that were written stay; delete them yourself if you don't need them.</dd>
+    <dt>Contact</dt>
+    <dd><a href="mailto:because232t@gmail.com">because232t@gmail.com</a></dd>
+  </dl>
+  <p data-lang="ja"><a href="./">Echona の使い方へ戻る</a> ・ <a href="privacy-policy.html">プライバシーポリシー</a></p>
+  <p data-lang="en"><a href="./">Back to How to use Echona</a> · <a href="privacy-policy.html#en">Privacy Policy</a></p>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span data-lang="ja">Claude・Claude Desktop は Anthropic 社のサービスです。画面の名前は、Claude Desktop の英語表示に合わせています。</span>
+    <span data-lang="en">Claude and Claude Desktop are services of Anthropic.</span>
+  </div>
+</footer>
+
+<script>
+  var TITLES = { ja: 'Mac で毎晩のまとめを作る', en: 'Nightly summary on a Mac' };
+  function setLanguage(lang) {
+    document.documentElement.lang = lang;
+    document.title = TITLES[lang];
+    try { localStorage.setItem('echona-lang', lang); } catch (e) {}
+    document.getElementById('lang-ja').classList.toggle('active', lang === 'ja');
+    document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+    var toggle = document.querySelector('.lang-toggle');
+    toggle.hidden = false;
+    toggle.setAttribute('aria-label', lang === 'ja' ? 'Switch to English' : '日本語に切り替え');
+  }
+  function toggleLanguage() {
+    setLanguage(document.documentElement.lang === 'ja' ? 'en' : 'ja');
+  }
+  setLanguage(document.documentElement.lang);
+</script>
+</body>
+</html>
