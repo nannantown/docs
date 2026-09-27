@@ -56,6 +56,9 @@
 <h2>6. Mac の毎晩のまとめ（使う人だけ）</h2>
 <p>保存先に iCloud Drive か Obsidian を選んだ方向けに、Mac の Claude Desktop（Anthropic 社のアプリ）の定期タスクで、保存先のフォルダの録音から1日のまとめを作る仕組みがあります（手順: <a href="mac.html">Mac で毎晩のまとめを作る</a>）。これは<strong>あなたが自分の Mac で自分のアカウントを使って</strong>設定するもので、本アプリがデータを送る仕組みではありません。設定した場合、そのフォルダの内容は Claude Desktop を通じて Anthropic 社のサーバーへ送られて処理され、その扱いは Anthropic 社のプライバシーポリシーに従います。本アプリは、そうしてできたまとめや直しのファイルをフォルダから読んで表示するだけです。</p>
 
+<p>処理対象は、保存先の <code>Echona</code> 内の録音の文字（元の文字起こし、題名、カテゴリ、一行要約、あなたがアプリで直した全文）、用語リスト、目次、過去のまとめ、テーマ別ノート、過去の手直し版とその根拠・候補です。手順書はこのフォルダの外を読まないよう定めています。音声は保管庫へ書き出されず、この処理でも送られません。</p>
+<p>聞き間違いの判断に使う追加の過去文脈は、前7日内のまとめ2件、関連テーマ2件、過去の録音・手直し版合計4件まで。UTF-8の部分読取で1ファイル3,000バイト、対象日ごとに12,000バイト、1実行24,000バイトを上限とします。当日の録音と必須設定ファイルを含む送信全体の上限ではありません。根拠として参照日・ノートの相対パス・短い引用・理由を手直し版に残し、アプリはその情報を端末にも保存して本文とは別に表示します。候補と根拠の説明を、共有する本文や学習する語の組へ追加することはありません。</p>
+
 <h2>7. データの削除</h2>
 <p>本アプリで録音を削除すると、その録音の音声と文字が端末から消え、今の保存先のフォルダにある、その録音のノートと直した版も消します。1日のまとめ・テーマ別のノート・目次・用語リストに書かれた内容と、前の保存先のフォルダのファイルは残ります（保存先を「Echona の中だけ」に変えた後は、フォルダ側には触れません）。本アプリそのものを削除すると、端末内の録音・文字起こし・設定はすべて消えます。保存先のフォルダに書き出したファイルは残るので、必要に応じてご自身で削除してください。</p>
 
@@ -105,6 +108,9 @@
 
 <h2>6. Nightly summary on a Mac (optional)</h2>
 <p>If you save to iCloud Drive or Obsidian, there is a way to set up a scheduled task in Claude Desktop (an app by Anthropic) on your Mac that writes a daily summary from the recordings in that folder (setup: <a href="mac.html?lang=en">Nightly summary on a Mac</a>). <strong>You set this up yourself, on your own Mac, with your own account</strong>. The app itself does not send any data. If you set it up, Claude Desktop sends the folder's contents to Anthropic's servers for processing, under Anthropic's privacy policy. The app only reads the resulting summary and correction files from the folder and displays them.</p>
+
+<p>The material processed is text within the save location's <code>Echona</code> folder: original transcripts, titles, categories, one-line summaries, the full text you edited in the app, word lists, the index, earlier summaries, topic notes, past corrected transcripts, and their evidence and suggestions. The task instructions prohibit reading outside this folder. Audio is not exported to the folder and is not sent for this processing.</p>
+<p>Additional historical context for correcting mishearings is limited to two summaries from the preceding seven days, two related topic notes, and four past recording or correction files in total. Excerpts are limited to 3,000 UTF-8 bytes per file, 12,000 bytes per target day, and 24,000 bytes per run. These are not limits on the total text sent, which also includes the target day's recordings and required configuration files. Corrections retain the source date, relative note path, short excerpt and reason as evidence. The app also stores this metadata on the device and displays it separately from the transcript. Suggestion metadata and explanations are not added to shared text or learned word pairs.</p>
 
 <h2>7. Deleting your data</h2>
 <p>Deleting a recording in the app removes its audio and text from the device, and also removes its note and corrected version from your current save folder. Daily summaries, topic notes, the index, the word list and files in a previous save folder keep what they contain (after you switch to "Echona only", the app no longer touches the folder). Deleting the app removes all recordings, transcripts and settings from the device. Files already written to your save folder stay there; delete them yourself if you wish.</p>
