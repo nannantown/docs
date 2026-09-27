@@ -199,7 +199,9 @@
     <dt>「Echona フォルダがありません」と返ってきた</dt>
     <dd>作業フォルダが違います。定期タスクの作業フォルダを、<code>Echona</code> フォルダが入っているフォルダにし、<code>echona-nightly.md</code> もそこに置きます。</dd>
     <dt>「まとめる録音はありませんでした」と返ってきた</dt>
-    <dd>まとめる新しい録音が直近7日に無かった、という意味です。録音した日の夜に、もう一度確かめてください。</dd>
+    <dd>直近7日（今日を含む）に、まだまとめていない録音が無かった、という意味です。今日録音したのにこう返ってきたときは、iPhone の Echona の 設定 › 保存先 が iCloud の中のフォルダか（「この iPhone 内」ではないか）を確かめてください。</dd>
+    <dt>「〇月〇日の録音は同期待ち…のため飛ばしました」と返ってきた</dt>
+    <dd>その日の録音が、iCloud から Mac へまだ届ききっていません。届けば次の実行でまとめられるので、そのままで大丈夫です。何日も続くときは、Mac の Finder で iCloud Drive の同期が止まっていないかを見てください。</dd>
     <dt>朝になってもまとめが届かない</dt>
     <dd>Mac がスリープしていた、Claude Desktop を閉じていた、許可待ちで止まっていた、のどれかがよくある理由です。Routines のタスクの記録（サイドバーの Scheduled）を見て、止まっていたら許可してから Run now を押します。iPhone 側は、まとめのファイルが iCloud から届くまで数分かかることがあります。</dd>
     <dt>人名や言葉の聞き間違いを減らしたい</dt>
@@ -213,7 +215,9 @@
     <dt>It replied that there is no Echona folder</dt>
     <dd>The folder is wrong. Set the task's folder to the one that contains <code>Echona</code>, and put <code>echona-nightly.md</code> there too.</dd>
     <dt>It replied that there were no recordings to summarize</dt>
-    <dd>There were no new recordings in the last 7 days. Check again on the night of a day you recorded.</dd>
+    <dd>There were no recordings left to summarize in the last 7 days (today included). If you recorded today, check that <span lang="ja">設定 › 保存先</span> (Settings › Save location) in Echona on your iPhone is a folder in iCloud, not “On My iPhone”.</dd>
+    <dt>It replied that a day’s recordings were skipped as waiting to sync</dt>
+    <dd>That day’s recordings haven’t fully arrived on the Mac from iCloud yet. The next run summarizes them once they do, so nothing to do. If it keeps happening for days, check in the Mac’s Finder that iCloud Drive isn’t stuck syncing.</dd>
     <dt>No summary in the morning</dt>
     <dd>Usually the Mac was asleep, Claude Desktop was closed, or the run stopped waiting for permission. Check the task's runs (Scheduled in the sidebar); if one is waiting, allow it and press Run now. On the iPhone, the summary may take a few minutes to arrive from iCloud.</dd>
     <dt>Fewer misheard names and words</dt>
