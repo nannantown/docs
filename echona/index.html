@@ -62,16 +62,16 @@
       <span class="node">1</span>
       <div class="split">
         <div>
-          <h3 data-lang="ja">保存先を選ぶ</h3>
-          <h3 data-lang="en">Choose where to save</h3>
-          <p data-lang="ja">録音の文字をどこに残すかを選びます。迷ったら「Echona の中だけ」のまま<span class="ui">「次へ」</span>で大丈夫。あとから変えられます。</p>
-          <p data-lang="en">Pick where the text of your recordings goes. Not sure? Leave <span lang="ja">「Echona の中だけ」</span> (Echona only) and tap <span lang="ja">「次へ」</span> (Next). You can change it later.</p>
+          <h3 data-lang="ja">Echonaの中で、声メモを始める</h3>
+          <h3 data-lang="en">Start with voice notes in Echona</h3>
+          <p data-lang="ja">最初は無料の声メモとして使えます。プランや保存先を選ばず、<span class="ui">「次へ」</span>で進みます。自動まとめや外部フォルダへの保存はあとから設定できます。</p>
+          <p data-lang="en">Start with free voice notes in the app. Tap <span lang="ja">「次へ」</span> (Next) without choosing a plan or save folder. Set up optional summaries or external folders later.</p>
           <p class="note" data-lang="ja">3つの違いは <a href="#destination">保存先の選び方</a> へ。</p>
           <p class="note" data-lang="en">The three choices are explained in <a href="#destination">Where to save</a>.</p>
         </div>
         <div class="shots one">
           <figure>
-            <img class="phone" src="img/guide-dest-app.jpg" width="600" height="1304" alt="「どこに残す？」の画面。Echona の中だけ・iCloud Drive・Obsidian の3つのカード" data-alt-en="The “Where to save?” screen with three cards: Echona only, iCloud Drive, Obsidian" decoding="async">
+            <img class="phone" src="img/guide-memo-intro.png" width="1206" height="2622" alt="声で、メモする。無料で始める最初の案内" data-alt-en="First-run guide: start with free voice notes" decoding="async">
           </figure>
         </div>
       </div>
@@ -238,8 +238,8 @@
       <div>
         <h3 data-lang="ja">あとから変える</h3>
         <h3 data-lang="en">Changing it later</h3>
-        <p data-lang="ja">今日の画面の右上の歯車 › 保存先の<span class="ui">「変更」</span>。カードを選び、フォルダを選ぶ2つは<span class="ui">「フォルダを選ぶ」</span>（選んであれば<span class="ui">「フォルダを選び直す」</span>）、「Echona の中だけ」は<span class="ui">「Echona の中だけにする」</span>で決まります。</p>
-        <p data-lang="en">The gear at the top right of the Today screen › <span lang="ja">「変更」</span> (Change) next to <span lang="ja">保存先</span> (Save to). Pick a card; for the two folder options use <span lang="ja">「フォルダを選ぶ」</span> (Choose folder) or <span lang="ja">「フォルダを選び直す」</span> (Choose again), and for Echona only tap <span lang="ja">「Echona の中だけにする」</span> (Keep in Echona only).</p>
+        <p data-lang="ja">今日の画面の右上の歯車 › 保存先の<span class="ui">「変更」</span>。iCloud Driveは選ぶだけで専用フォルダを用意します。Obsidianは<span class="ui">「フォルダを選ぶ」</span>から保管庫を選択。「Echona の中だけ」は<span class="ui">「Echona の中だけにする」</span>で決まります。</p>
+        <p data-lang="en">The gear at the top right of the Today screen › <span lang="ja">「変更」</span> (Change) next to <span lang="ja">保存先</span> (Save to). Selecting iCloud Drive prepares its folder automatically. For Obsidian, use <span lang="ja">「フォルダを選ぶ」</span> (Choose folder). For Echona only tap <span lang="ja">「Echona の中だけにする」</span> (Keep in Echona only).</p>
         <ul class="dots" data-lang="ja">
           <li>フォルダへは、iPhone のロックを解除したときや、アプリを開いたときに書き出します。</li>
           <li>保存先を変えると、新しいフォルダにすべての録音を書き直します。前のフォルダのファイルはそのまま残ります。</li>
@@ -335,8 +335,8 @@
         <h3 data-lang="en">Deleting</h3>
         <p data-lang="ja">録音の画面のいちばん下<span class="ui">「録音を削除」</span> › <span class="ui">「削除」</span>。取り消せません。</p>
         <p data-lang="en">At the bottom of a recording's screen, <span lang="ja">「録音を削除」</span> (Delete recording) › <span lang="ja">「削除」</span> (Delete). This can't be undone.</p>
-        <p class="note" data-lang="ja">今の保存先のフォルダにある、その録音のノートも消えます。1日のまとめや用語リスト、前の保存先のフォルダのファイルは残ります。</p>
-        <p class="note" data-lang="en">Its note in your current save folder is deleted too. Daily summaries, the word list and files in a previous save folder stay.</p>
+        <p class="note" data-lang="ja">今の保存先のフォルダにある、その録音のノートも消えます。Macの1日のまとめや用語リスト、前の保存先のファイルは残ります。有料の自動まとめに送信済みなら、クラウドのその本文とその日のまとめは次の接続時に削除します。</p>
+        <p class="note" data-lang="en">Its note in your current save folder is deleted too. Mac summaries, the word list and files in a previous save folder stay. If uploaded to paid automatic summaries, that transcript and the day’s cloud summary are deleted on the next connection.</p>
       </div>
       <div class="shots one">
         <figure>
@@ -346,13 +346,26 @@
     </div>
   </div>
 
+  <div class="card" id="automatic-summary">
+    <h3 data-lang="ja">設定いらずの自動まとめ（任意・月額）</h3>
+    <h3 data-lang="en">Automatic summaries, without setup (optional subscription)</h3>
+    <p data-lang="ja">「1日のまとめ」から「設定いらずの自動まとめ」へ。購入前に「まとめの仕上がりを見る」で例を読めます。ライトは月300分・30万文字、スタンダードは月1,200分・120万文字。上限後も無料の声メモは続けられます。</p>
+    <p data-lang="en">Open Daily summary, then Automatic summaries. View a fictional example before choosing a plan. Lite includes 300 minutes and 300,000 characters a month; Standard includes 1,200 minutes and 1,200,000 characters. Free voice notes remain available after the limit.</p>
+    <p data-lang="ja">送信への同意後の録音の文字だけをCloudflareとOpenAIで処理します。音声・同意前の録音は送りません。MacやAPIキーの設定は不要です。文字起こしと送信を済ませた分が、現地時刻23時以降のまとめの対象になります。未送信分はアプリを開いて再試行します。</p>
+    <p data-lang="en">After consent, new transcripts are processed by Cloudflare and OpenAI. Audio and pre-consent recordings are not uploaded. No Mac or API key is needed. Received transcripts are summarized after 23:00 in your local time zone; open the app to retry pending uploads.</p>
+    <p class="callout" data-lang="ja">現在のTestFlightでは接続準備中のため購入できません。実APIと購入の通し確認が完了するまで、無料メモと仕上がりの例を利用できます。</p>
+    <p class="callout" data-lang="en">Purchases are currently unavailable in TestFlight while the service connection and purchase flow are being validated. Free notes and the example remain available.</p>
+    <p data-lang="ja">「設定」›「振り返りの通知」で毎日の時刻を選べます。これは読み返す時間のお知らせで、まとめの完成通知ではありません。</p>
+    <p data-lang="en">Settings › Review reminder lets you choose a daily time. It is a reminder to review, not a notification that generation has finished.</p>
+  </div>
+
   <div class="card" id="digest">
     <div class="split">
       <div>
         <span class="tag" data-lang="ja">Mac・上級者向け</span><span class="tag" data-lang="en">Mac · advanced</span>
         <h3 data-lang="ja">1日のまとめ</h3>
         <h3 data-lang="en">Daily summary</h3>
-        <p data-lang="ja">Mac の Claude Desktop（Anthropic 社のアプリ）の定期タスクが毎晩、その日の録音から1日のまとめを作り、アプリの<span class="ui">「1日のまとめ」</span>で読めます。</p>
+        <p data-lang="ja">Mac の Claude Desktop（Anthropic 社のアプリ）の定期タスクが毎晩、その日の録音から1日のまとめを作り、アプリの<span class="ui">「1日のまとめ」</span> ›「自分で設定したMacのまとめを開く」で読めます。</p>
         <p data-lang="en">A scheduled task in Claude Desktop (an app by Anthropic) on your Mac writes a summary of the day's recordings every night. Read it under <span lang="ja">「1日のまとめ」</span> (Daily summary) in the app.</p>
         <p class="note" data-lang="ja">Mac の定期タスクは、その文字を Anthropic 社に送って処理します（使うかは任意で、あなた自身のアカウントで設定します）。保存先が iCloud Drive か Obsidian のときに使えます。Mac と Claude の有料プランが要ります。なくても Echona はそのまま使えます。</p>
         <p data-lang="ja"><a href="mac.html">Mac の設定の手順 ›</a></p>

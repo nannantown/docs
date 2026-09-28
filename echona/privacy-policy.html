@@ -26,7 +26,7 @@
 <p>Echona（以下「本アプリ」）は、iPhone で話した内容を録音し、端末の中で文字起こしするアプリです。音声の文字起こしは端末内で行います。有料の「自動まとめ」を選び、送信に同意した場合だけ、文字を私たちのクラウドサービスで処理します。このページでは、本アプリがどの情報をどこで扱うかを説明します。</p>
 
 <h2>1. 私たちが集める情報</h2>
-<p>広告や追跡用の解析はありません。基本の録音と文字起こしは端末内で行います。有料の自動まとめでは、同意後に録音した文字起こし（送信時に確定している修正版を含む）、録音ID・日時・長さ、タイムゾーン、購読の検証情報と利用量を扱います。音声ファイルは送信しません。氏名やメールでのアカウント登録は不要で、Appleの購読情報から作る識別子でデータを管理します。決済はAppleが処理し、カード番号を私たちは受け取りません。接続時には配信・障害対応のためIPアドレス等の通信情報をCloudflareが処理します。録音本文・音声をサーバーの診断ログへ記録しません。</p>
+<p>広告や追跡用の解析はありません。基本の録音と文字起こしは端末内で行います。有料の自動まとめでは、同意後に録音した文字起こし（送信時に確定している修正版を含む）、録音ID・日時・長さ、タイムゾーン、購読の検証情報と利用量を扱います。音声ファイルは送信しません。氏名やメールでのアカウント登録は不要で、Appleの購読情報から作る識別子でデータを管理します。決済はAppleが処理し、カード番号を私たちは受け取りません。接続時には配信・障害対応のためIPアドレス等の通信情報をCloudflareが処理します。録音本文・音声をサーバーの診断ログへ記録しません。生成の運用管理のため、使用モデル・入力と出力のトークン数・生成の成否を最長30日保持します。</p>
 <p>自分で設定するiCloud／Obsidianへの保存（4）、共有（5）、Macのまとめ（6）は引き続き利用できます。有料の自動まとめは別の任意機能です（6A）。</p>
 
 <h2>2. 端末で扱う情報</h2>
@@ -61,6 +61,7 @@
 <p>聞き間違いの判断に使う追加の過去文脈は、前7日内のまとめ2件、関連テーマ2件、過去の録音・手直し版合計4件まで。UTF-8の部分読取で1ファイル3,000バイト、対象日ごとに12,000バイト、1実行24,000バイトを上限とします。当日の録音と必須設定ファイルを含む送信全体の上限ではありません。根拠として参照日・ノートの相対パス・短い引用・理由を手直し版に残し、アプリはその情報を端末にも保存して本文とは別に表示します。候補と根拠の説明を、共有する本文や学習する語の組へ追加することはありません。</p>
 
 <h2>6A. 有料の自動まとめ（任意・同意が必要）</h2>
+<p>送信済みの文字を訂正した場合は、次の同期で訂正を送り、古いまとめを更新対象にします。録音時間は再加算しません。振り返りの通知は端末内で設定した時刻に出し、本文を通知へ載せません。</p>
 <p>「自動まとめ」で送信内容を確認し、同意して開始すると、同意後の録音本文をCloudflare上のEchona専用サービスに送信します。過去の録音を一括送信することはありません。受信済みの本文をOpenAIのAPIで日ごとに整理します。OpenAIには対象日の本文と録音ID・日付を送り、音声やAppleの購入署名は送りません。処理は日本国外で行われる場合があります。送信にはHTTPSを使います。購入だけでは本文送信を開始しません。</p>
 <p>OpenAI APIの入出力は既定でモデル学習に使われません。保存オプションは無効にしていますが、不正利用監視等のため原則最大30日保持される場合があります。詳しくは<a href="https://developers.openai.com/api/docs/guides/your-data">OpenAIのデータ管理</a>をご確認ください。</p>
 <p>Echonaの稼働データベースでは本文と生成したまとめを30日後に削除します。受信済みのまとめはiPhoneに保存します。購読と利用量、不正な枠リセットを防ぐ録音IDなどは購読期限後90日まで保持します。Cloudflareのバックアップには削除済みデータが最大30日残る場合があり、通常のアプリからは参照しません。インフラの処理は<a href="https://www.cloudflare.com/privacypolicy/">Cloudflareのプライバシーポリシー</a>にも従います。</p>
@@ -122,6 +123,7 @@
 <p>Additional historical context for correcting mishearings is limited to two summaries from the preceding seven days, two related topic notes, and four past recording or correction files in total. Excerpts are limited to 3,000 UTF-8 bytes per file, 12,000 bytes per target day, and 24,000 bytes per run. These are not limits on the total text sent, which also includes the target day's recordings and required configuration files. Corrections retain the source date, relative note path, short excerpt and reason as evidence. The app also stores this metadata on the device and displays it separately from the transcript. Suggestion metadata and explanations are not added to shared text or learned word pairs.</p>
 
 <h2>6A. Paid automatic summaries (optional, with consent)</h2>
+<p>Edits to uploaded transcripts are sent on the next sync and invalidate the old summary. Audio duration is not charged again. Optional daily review reminders are scheduled on-device and contain no transcript text. Model names, input/output token counts and generation status are retained for up to 30 days for service operation.</p>
 <p>After reviewing the disclosure and consenting in Automatic Summaries, transcripts recorded after that consent are sent over HTTPS to Echona's dedicated service on Cloudflare. Older recordings are not bulk-uploaded. OpenAI's API receives that day's text, recording IDs and date to generate the summary, but not audio or Apple purchase signatures. Processing may occur outside Japan. Purchase alone does not start text uploads.</p>
 <p>OpenAI API inputs and outputs are not used for training by default. We disable response storage, but abuse-monitoring retention may still apply, generally up to 30 days. See <a href="https://developers.openai.com/api/docs/guides/your-data">OpenAI's data controls</a>.</p>
 <p>Text and generated summaries are removed from Echona's active database after 30 days. Downloaded summaries remain on your iPhone. Subscription records, usage counters and recording IDs needed to prevent quota resets are retained until 90 days after expiry. Deleted data may remain in Cloudflare backups for up to 30 further days and is not accessed by the app. Infrastructure processing is also governed by <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare's privacy policy</a>.</p>
