@@ -21,12 +21,12 @@
 
 <section id="ja" lang="ja">
 <h1>Echona プライバシーポリシー</h1>
-<p class="meta">最終更新日: 2026年9月28日</p>
+<p class="meta">最終更新日: 2026年9月29日</p>
 
 <p>Echona（以下「本アプリ」）は、iPhone で話した内容を録音し、端末の中で文字起こしするアプリです。音声の文字起こしは端末内で行います。有料の「自動まとめ」を選び、送信に同意した場合だけ、文字を私たちのクラウドサービスで処理します。このページでは、本アプリがどの情報をどこで扱うかを説明します。</p>
 
 <h2>1. 私たちが集める情報</h2>
-<p>広告や追跡用の解析はありません。基本の録音と文字起こしは端末内で行います。有料の自動まとめでは、同意後に録音した文字起こし（送信時に確定している修正版を含む）、録音ID・日時・長さ、タイムゾーン、購読の検証情報と利用量を扱います。音声ファイルは送信しません。氏名やメールでのアカウント登録は不要で、Appleの購読情報から作る識別子でデータを管理します。決済はAppleが処理し、カード番号を私たちは受け取りません。接続時には配信・障害対応のためIPアドレス等の通信情報をCloudflareが処理します。録音本文・音声をサーバーの診断ログへ記録しません。生成の運用管理のため、使用モデル・入力と出力のトークン数・生成の成否を最長30日保持します。</p>
+<p>広告や追跡用の解析はありません。基本の録音と文字起こしは端末内で行います。有料の自動まとめでは、同意後に録音した文字起こし（送信時に確定している修正版を含む）、録音ID・日時・長さ、タイムゾーン、相談文と参照する元メモ、購読の検証情報と利用量を扱います。音声ファイルは送信しません。氏名やメールでのアカウント登録は不要で、Appleの購読情報から作る識別子でデータを管理します。決済はAppleが処理し、カード番号を私たちは受け取りません。接続時には配信・障害対応のためIPアドレス等の通信情報をCloudflareが処理します。録音本文・音声をサーバーの診断ログへ記録しません。生成の運用管理のため、使用モデル・入力と出力のトークン数・生成の成否を最長30日保持します。</p>
 <p>自分で設定するiCloud／Obsidianへの保存（4）、共有（5）、Macのまとめ（6）は引き続き利用できます。有料の自動まとめは別の任意機能です（6A）。</p>
 
 <h2>2. 端末で扱う情報</h2>
@@ -60,11 +60,11 @@
 <p>処理対象は、保存先の <code>Echona</code> 内の録音の文字（元の文字起こし、題名、カテゴリ、一行要約、あなたがアプリで直した全文）、用語リスト、目次、過去のまとめ、テーマ別ノート、過去の手直し版とその根拠・候補です。手順書はこのフォルダの外を読まないよう定めています。音声は保管庫へ書き出されず、この処理でも送られません。</p>
 <p>聞き間違いの判断に使う追加の過去文脈は、前7日内のまとめ2件、関連テーマ2件、過去の録音・手直し版合計4件まで。UTF-8の部分読取で1ファイル3,000バイト、対象日ごとに12,000バイト、1実行24,000バイトを上限とします。当日の録音と必須設定ファイルを含む送信全体の上限ではありません。根拠として参照日・ノートの相対パス・短い引用・理由を手直し版に残し、アプリはその情報を端末にも保存して本文とは別に表示します。候補と根拠の説明を、共有する本文や学習する語の組へ追加することはありません。</p>
 
-<h2>6A. 有料の自動まとめ（任意・同意が必要）</h2>
+<h2>6A. 有料の自動まとめ・相談（任意・同意が必要）</h2>
 <p>送信済みの文字を訂正した場合は、次の同期で訂正を送り、古いまとめを更新対象にします。録音時間は再加算しません。振り返りの通知は端末内で設定した時刻に出し、本文を通知へ載せません。</p>
-<p>「自動まとめ」で送信内容を確認し、同意して開始すると、同意後の録音本文をCloudflare上のEchona専用サービスに送信します。過去の録音を一括送信することはありません。受信済みの本文をOpenAIのAPIで日ごとに整理します。OpenAIには対象日の本文と録音ID・日付を送り、音声やAppleの購入署名は送りません。処理は日本国外で行われる場合があります。送信にはHTTPSを使います。購入だけでは本文送信を開始しません。</p>
+<p>「自動まとめ」で送信内容を確認し、同意して開始すると、同意後の録音本文をCloudflare上のEchona専用サービスに送信します。過去の録音を一括送信することはありません。受信済みの本文をOpenAIのAPIで日ごとに整理します。更新して新しい同意を完了した場合、送信完了の5秒後を目安に生成を予約します（完成時刻の保証ではなく、夜23時の制限はありません）。相談、週・月の振り返り、文章の書き直し、次にすることの抽出にも対応します。OpenAIには処理対象の本文と録音ID・日付、相談文と参照する元メモを送り、音声やAppleの購入署名は送りません。相談などが参照するのは送信済みのメモのみで、1回最大60件・合計60,000文字（UTF-16単位）です。上限により参照範囲が省略された場合は、その旨を示します。相談回答は端末のセッション内だけに表示し、Echonaのクラウドに永続保存しません。処理は日本国外で行われる場合があります。送信にはHTTPSを使います。購入だけでは本文送信を開始しません。</p>
 <p>OpenAI APIの入出力は既定でモデル学習に使われません。保存オプションは無効にしていますが、不正利用監視等のため原則最大30日保持される場合があります。詳しくは<a href="https://developers.openai.com/api/docs/guides/your-data">OpenAIのデータ管理</a>をご確認ください。</p>
-<p>Echonaの稼働データベースでは本文と生成したまとめを30日後に削除します。受信済みのまとめはiPhoneに保存します。購読と利用量、不正な枠リセットを防ぐ録音IDなどは購読期限後90日まで保持します。Cloudflareのバックアップには削除済みデータが最大30日残る場合があり、通常のアプリからは参照しません。インフラの処理は<a href="https://www.cloudflare.com/privacypolicy/">Cloudflareのプライバシーポリシー</a>にも従います。</p>
+<p>新しい同意のもとでは、Echonaの稼働データベースで本文と生成した日ごとのまとめを購読中保持し、購読期限の90日後に削除します。更新して新しい同意を完了した場合に限り、送信後の生成予約と長期保持へ切り替わります。それまでは旧同意の条件（現地時刻23時以降の生成・本文とまとめの30日保持）を維持します。完全な復元用バックアップは提供していません。受信済みのまとめはiPhoneに保存します。購読と利用量、不正な枠リセットを防ぐ録音IDなどは購読期限後90日まで保持します。Cloudflareのバックアップには削除済みデータが最大30日残る場合があり、通常のアプリからは参照しません。インフラの処理は<a href="https://www.cloudflare.com/privacypolicy/">Cloudflareのプライバシーポリシー</a>にも従います。</p>
 <p>設定から送信・自動まとめを停止できます。オフラインでは端末の送信を直ちに止め、クラウド側の停止は次の接続時に反映します。「クラウドの本文とまとめを削除」でクラウドの本文・まとめと端末に保存した自動まとめを削除します。オフライン時は次の接続時に実行します。この操作はAppleの購読を解約しません。解約は「購読を管理・解約」から行ってください。</p>
 
 <h2>7. データの削除</h2>
@@ -83,12 +83,12 @@
 
 <section id="en" lang="en">
 <h1>Echona Privacy Policy</h1>
-<p class="meta">Last updated: September 28, 2026</p>
+<p class="meta">Last updated: September 29, 2026</p>
 
 <p>Echona ("the app") records what you say on your iPhone and transcribes it on the device. Optional paid automatic summaries send text to our cloud service only after your consent. Audio transcription stays on the device. This page explains what the app handles and where.</p>
 
 <h2>1. Information we collect</h2>
-<p>There are no ads or tracking analytics. Basic recording and transcription run on your device. If you consent to paid automatic summaries, we process transcripts (including approved edits at upload time), recording IDs, dates, durations, time zone, purchase verification and usage information. Audio is not uploaded. We use an identifier derived from your Apple subscription without requiring a name or email account. Apple handles payments; we do not receive card numbers. Cloudflare processes connection metadata such as IP addresses to deliver and secure the service. Our server diagnostic logs do not contain recording text or audio.</p>
+<p>There are no ads or tracking analytics. Basic recording and transcription run on your device. If you consent to paid automatic summaries, we process transcripts (including approved edits at upload time), recording IDs, dates, durations, time zone, your questions and source notes, purchase verification and usage information. Audio is not uploaded. We use an identifier derived from your Apple subscription without requiring a name or email account. Apple handles payments; we do not receive card numbers. Cloudflare processes connection metadata such as IP addresses to deliver and secure the service. Our server diagnostic logs do not contain recording text or audio.</p>
 <p>Optional folder export (4), sharing (5) and your own Mac workflow (6) remain available independently of paid automatic summaries (6A).</p>
 
 <h2>2. Information handled on your iPhone</h2>
@@ -122,11 +122,11 @@
 <p>The material processed is text within the save location's <code>Echona</code> folder: original transcripts, titles, categories, one-line summaries, the full text you edited in the app, word lists, the index, earlier summaries, topic notes, past corrected transcripts, and their evidence and suggestions. The task instructions prohibit reading outside this folder. Audio is not exported to the folder and is not sent for this processing.</p>
 <p>Additional historical context for correcting mishearings is limited to two summaries from the preceding seven days, two related topic notes, and four past recording or correction files in total. Excerpts are limited to 3,000 UTF-8 bytes per file, 12,000 bytes per target day, and 24,000 bytes per run. These are not limits on the total text sent, which also includes the target day's recordings and required configuration files. Corrections retain the source date, relative note path, short excerpt and reason as evidence. The app also stores this metadata on the device and displays it separately from the transcript. Suggestion metadata and explanations are not added to shared text or learned word pairs.</p>
 
-<h2>6A. Paid automatic summaries (optional, with consent)</h2>
+<h2>6A. Paid automatic summaries and reflection (optional, with consent)</h2>
 <p>Edits to uploaded transcripts are sent on the next sync and invalidate the old summary. Audio duration is not charged again. Optional daily review reminders are scheduled on-device and contain no transcript text. Model names, input/output token counts and generation status are retained for up to 30 days for service operation.</p>
-<p>After reviewing the disclosure and consenting in Automatic Summaries, transcripts recorded after that consent are sent over HTTPS to Echona's dedicated service on Cloudflare. Older recordings are not bulk-uploaded. OpenAI's API receives that day's text, recording IDs and date to generate the summary, but not audio or Apple purchase signatures. Processing may occur outside Japan. Purchase alone does not start text uploads.</p>
+<p>After reviewing the disclosure and consenting in Automatic Summaries, transcripts recorded after that consent are sent over HTTPS to Echona's dedicated service on Cloudflare. Older recordings are not bulk-uploaded. With the new consent, daily summary generation is scheduled for about 5 seconds after upload, without a 23:00 restriction or a guaranteed completion time. You can also ask about your notes, review weeks or months, rewrite text and extract actions. OpenAI's API receives the relevant text, recording IDs and dates, your question and source notes, but not audio or Apple purchase signatures. Reflection uses only uploaded notes, up to 60 notes and 60,000 UTF-16 code units per request. A truncation notice indicates omitted context. Reflection answers appear only in the device session and are not persisted in Echona's cloud. Processing may occur outside Japan. Purchase alone does not start text uploads.</p>
 <p>OpenAI API inputs and outputs are not used for training by default. We disable response storage, but abuse-monitoring retention may still apply, generally up to 30 days. See <a href="https://developers.openai.com/api/docs/guides/your-data">OpenAI's data controls</a>.</p>
-<p>Text and generated summaries are removed from Echona's active database after 30 days. Downloaded summaries remain on your iPhone. Subscription records, usage counters and recording IDs needed to prevent quota resets are retained until 90 days after expiry. Deleted data may remain in Cloudflare backups for up to 30 further days and is not accessed by the app. Infrastructure processing is also governed by <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare's privacy policy</a>.</p>
+<p>With the new consent, cloud notes and generated daily summaries are kept in Echona's active database during subscription and deleted 90 days after expiry. Only after updating and explicitly completing the new consent do post-upload scheduling and longer retention apply. Until then, the previous terms remain: generation after 23:00 local time and 30-day retention of cloud notes and summaries. A complete restore backup is not provided. Downloaded summaries remain on your iPhone. Subscription records, usage counters and recording IDs needed to prevent quota resets are retained until 90 days after expiry. Deleted data may remain in Cloudflare backups for up to 30 further days and is not accessed by the app. Infrastructure processing is also governed by <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare's privacy policy</a>.</p>
 <p>You can pause uploads and generation in settings. Offline, uploads stop locally immediately; the server pause takes effect on the next connection. Delete Cloud Text and Summaries removes cloud text, generated summaries and the downloaded automatic-summary copies. Offline deletion is queued for the next connection. These actions do not cancel your Apple subscription; use Manage Subscription to cancel.</p>
 
 <h2>7. Deleting your data</h2>
