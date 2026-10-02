@@ -349,10 +349,10 @@
   <div class="card" id="automatic-summary">
     <h3 data-lang="ja">設定いらずの自動まとめ（任意・月額）</h3>
     <h3 data-lang="en">Automatic summaries, without setup (optional subscription)</h3>
-    <p data-lang="ja">「1日のまとめ」から「設定いらずの自動まとめ」へ。購入前に「まとめの仕上がりを見る」で例を読めます。ライトは月300分・30万文字、スタンダードは月1,200分・120万文字。上限後も無料の声メモは続けられます。</p>
-    <p data-lang="en">Open Daily summary, then Automatic summaries. View a fictional example before choosing a plan. Lite includes 300 minutes and 300,000 characters a month; Standard includes 1,200 minutes and 1,200,000 characters. Free voice notes remain available after the limit.</p>
-    <p data-lang="ja">送信への同意後の録音の文字に加え、相談文と参照する元メモをCloudflareとOpenAIで処理します。音声・同意前の録音は送りません。MacやAPIキーの設定は不要です。更新して新しい同意を完了した場合、文字起こしと送信を済ませた分は、送信完了の5秒後を目安に日ごとのまとめの生成を予約します。夜まで待つ必要はありませんが、完成時刻の保証ではありません。未送信分はアプリを開いて再試行します。</p>
-    <p data-lang="en">After consent, new transcripts, your questions and source notes are processed by Cloudflare and OpenAI. Audio and pre-consent recordings are not uploaded. No Mac or API key is needed. With the new consent, daily summary generation is scheduled for about 5 seconds after upload, without waiting for night; completion time is not guaranteed. Open the app to retry pending uploads.</p>
+    <p data-lang="ja">「振り返り」タブから「設定いらずの自動まとめ」へ。購入前に「まとめの仕上がりを見る」で例を読めます。ライトは月300分・30万文字、スタンダードは月1,200分・120万文字。上限後も無料の声メモは続けられます。</p>
+    <p data-lang="en">Open the <span lang="ja">「振り返り」</span> (Reflect) tab, then Automatic summaries. View a fictional example before choosing a plan. Lite includes 300 minutes and 300,000 characters a month; Standard includes 1,200 minutes and 1,200,000 characters. Free voice notes remain available after the limit.</p>
+    <p data-lang="ja">送信への同意後の録音の文字に加え、相談文と参照する元メモをCloudflareとOpenAIで処理します。手がかりの送信をオンにすると、クラウドに送った記録で直した「聞き間違い→正しい語」と、話題名と短い説明を、日別まとめにAIへの依頼1回につき400字以内で添えます（過去の録音やまとめの全文は送りません）。音声・同意前の録音は送りません。MacやAPIキーの設定は不要です。更新して新しい同意を完了した場合、文字起こしと送信を済ませた分は、送信完了の5秒後を目安に日ごとのまとめの生成を予約します。夜まで待つ必要はありませんが、完成時刻の保証ではありません。未送信分はアプリを開いて再試行します。</p>
+    <p data-lang="en">After consent, new transcripts, your questions and source notes are processed by Cloudflare and OpenAI. With hints on, the misheard→correct word pairs you fixed in the app on transcripts already sent to the cloud and topic names with short descriptions are attached to daily summaries (at most 400 characters per AI request; full past recordings and summaries are never sent). Audio and pre-consent recordings are not uploaded. No Mac or API key is needed. With the new consent, daily summary generation is scheduled for about 5 seconds after upload, without waiting for night; completion time is not guaranteed. Open the app to retry pending uploads.</p>
     <p data-lang="ja">相談、週・月の振り返り、文章の書き直し、次にすることの抽出も利用できます。参照するのは送信済みのメモのみで、1回最大60件・合計60,000文字（UTF-16単位）です。上限により参照範囲が省略された場合は、その旨を示します。相談回答は端末のセッション内だけに表示し、クラウドに永続保存しません。</p>
     <p data-lang="en">Ask about your notes, review weeks or months, rewrite text or extract actions. These requests use only uploaded notes, up to 60 notes and 60,000 UTF-16 code units per request. A truncation notice indicates omitted context. Reflection answers appear only in the device session and are not persisted in our cloud.</p>
     <p data-lang="ja">自動まとめ・相談など全体で、手動生成・再試行を含め1アカウント1日60回の生成試行まで。ベータ期間はサービス全体で1日100回の安全上限もあり、個人の枠が残っていても利用できない場合があります。</p>
@@ -371,8 +371,8 @@
         <span class="tag" data-lang="ja">Mac・上級者向け</span><span class="tag" data-lang="en">Mac · advanced</span>
         <h3 data-lang="ja">1日のまとめ</h3>
         <h3 data-lang="en">Daily summary</h3>
-        <p data-lang="ja">Mac の Claude Desktop（Anthropic 社のアプリ）の定期タスクが毎晩、その日の録音から1日のまとめを作り、アプリの<span class="ui">「1日のまとめ」</span> ›「自分で設定したMacのまとめを開く」で読めます。</p>
-        <p data-lang="en">A scheduled task in Claude Desktop (an app by Anthropic) on your Mac writes a summary of the day's recordings every night. Read it under <span lang="ja">「1日のまとめ」</span> (Daily summary) in the app.</p>
+        <p data-lang="ja">Mac の Claude Desktop（Anthropic 社のアプリ）の定期タスクが毎晩、その日の録音から1日のまとめを作り、アプリの<span class="ui">「振り返り」</span>タブで、日付を押して読めます。</p>
+        <p data-lang="en">A scheduled task in Claude Desktop (an app by Anthropic) on your Mac writes a summary of the day's recordings every night. Read it in the app's <span lang="ja">「振り返り」</span> (Reflect) tab by tapping a date.</p>
         <p class="note" data-lang="ja">Mac の定期タスクは、その文字を Anthropic 社に送って処理します（使うかは任意で、あなた自身のアカウントで設定します）。保存先が iCloud Drive か Obsidian のときに使えます。Mac と Claude の有料プランが要ります。なくても Echona はそのまま使えます。</p>
         <p data-lang="ja"><a href="mac.html">Mac の設定の手順 ›</a></p>
         <p class="note" data-lang="en">The Mac task sends that text to Anthropic for processing (optional, set up with your own account). Works when you save to iCloud Drive or Obsidian. Needs a Mac and a paid Claude plan. Echona works fine without it.</p>
